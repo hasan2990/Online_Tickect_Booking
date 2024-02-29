@@ -11,7 +11,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
 {
     public class RegAndLoginRepo : IRegAndLoginRepo
     {
-        private readonly IConfiguration _configuration;
+        /*private readonly IConfiguration _configuration;
         public RegAndLoginRepo(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -55,9 +55,9 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                     return "";
                 }
             }
-        }
+        }*/
 
-        /*private readonly AppDbContext _appDbContext;
+        private readonly AppDbContext _appDbContext;
         public RegAndLoginRepo(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
@@ -98,7 +98,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                     return "";
                 }
             }
-        }*/
+        }
 
 
 
