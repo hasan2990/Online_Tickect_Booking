@@ -1,47 +1,46 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-
-using Online_Ticket_Booking.Models.Model1;
+﻿using Microsoft.AspNetCore.Mvc;
+using Online_Ticket_Booking.Models;
 
 using Online_Ticket_Booking.Repositories.Interfaces;
 
 
-namespace Online_Ticket_Booking.Controllers.Controller1
+namespace Online_Ticket_Booking.Controllers
 {
 
     [ApiController]
     public class RegistrationController : ControllerBase
     {
-        private readonly IRepo _registrationRepository;
+        private readonly IRegAndLoginRepo _registrationRepository;
 
-        public RegistrationController(IRepo registrationRepository)
+        public RegistrationController(IRegAndLoginRepo registrationRepository)
         {
             _registrationRepository = registrationRepository;
         }
 
         [HttpPost]
         [Route("api/registration")]
-        public string Registration(Registration registration)
+        public string Registration(RegistrationModel registration)
         {
             return _registrationRepository.RegisterUser(registration);
+           
         }
 
         [HttpPost]
         [Route("api/login")]
-        public IActionResult login(login registration)
+        public IActionResult Login(LoginModel login)
         {
-            var token = _registrationRepository.GetTokenByEmailAndPassword(registration.Email, registration.Password);
+            var token = _registrationRepository.LoginUser(login.Email, login.Password);
 
-            if (token != null)
+            if (!string.IsNullOrEmpty(token))
             {
-                return Ok(token);
+                return Ok(new { Token = token, Message = "Token generated successfully." });
             }
             else
             {
                 return BadRequest("Not Found");
             }
         }
- 
+
         /*private string GenerateToken(string email)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();

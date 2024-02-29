@@ -1,6 +1,6 @@
-﻿namespace Online_Ticket_Booking.Models.Model1
+﻿namespace Online_Ticket_Booking.Models
 {
-    public class Registration
+    public class RegistrationModel
     {
         public int ID { get; set; }
         public string UserName { get; set; }

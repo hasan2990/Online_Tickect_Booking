@@ -9,9 +9,12 @@ namespace Online_Ticket_Booking.Models
         private readonly string _databaseName;
         public AppDbContext(IConfiguration configuration)
         {
-            _configuration = configuration;
-            _databaseName = _configuration.GetConnectionString("CrudConnection");
+            this._configuration = configuration;
+            this._databaseName = this._configuration.GetConnectionString("CrudConnection");
         }
+
+        public object Registrations { get; internal set; }
+
         public IDbConnection Connection() => new SqlConnection(this._databaseName);
 
     }

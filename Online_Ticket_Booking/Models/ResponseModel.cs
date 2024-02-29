@@ -1,6 +1,6 @@
-﻿namespace Online_Ticket_Booking.Models.Model1
+﻿namespace Online_Ticket_Booking.Models
 {
-    public class Response
+    public class ResponseModel
     {
         public int statusCode { get; set; }
         public string statusMessage { get; set; }

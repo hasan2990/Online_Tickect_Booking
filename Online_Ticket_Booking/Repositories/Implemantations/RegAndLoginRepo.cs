@@ -1,23 +1,23 @@
-﻿using Microsoft.Data.SqlClient;
-using Online_Ticket_Booking.Models.Model1;
-using Online_Ticket_Booking.Repositories.Interfaces;
+﻿using Online_Ticket_Booking.Repositories.Interfaces;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Online_Ticket_Booking.Models;
+using Microsoft.Data.SqlClient;
 namespace Online_Ticket_Booking.Repositories.Implemantations
 {
-    public class ImplementationRepo : IRepo
+    public class RegAndLoginRepo : IRegAndLoginRepo
     {
         private readonly IConfiguration _configuration;
-        public ImplementationRepo(IConfiguration configuration)
+        public RegAndLoginRepo(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        public string RegisterUser(Registration registration)
+        public string RegisterUser(RegistrationModel registration)
         {
             string connectionString = _configuration.GetConnectionString("CrudConnection");
 
@@ -29,21 +29,21 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
 
                 if (rowsAffected > 0)
                 {
-                    return "Data Inserted";
+                    return ("Registration successful.");
                 }
                 else
                 {
-                    return "Error";
+                    return ("Registration failed due to invalid data.");
                 }
             }
         }
-        public string GetTokenByEmailAndPassword(string email, string password)
+        public string LoginUser(string email, string password)
         {
             string connectionString = _configuration.GetConnectionString("CrudConnection");
             using (var con = new SqlConnection(connectionString))
             {
                 con.Open();
-                var user = con.QueryFirstOrDefault<login>("SELECT * FROM Registration WHERE Email = @Email AND Password = @Password AND IsActive = 1",
+                var user = con.QueryFirstOrDefault<LoginModel>("SELECT * FROM Registration WHERE Email = @Email AND Password = @Password AND IsActive = 1",
                                                             new { Email = email, Password = password });
 
                 if (user != null)
@@ -56,6 +56,51 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                 }
             }
         }
+
+        /*private readonly AppDbContext _appDbContext;
+        public RegAndLoginRepo(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
+
+        public string RegisterUser(RegistrationModel registration)
+        {
+            string query = "INSERT INTO Registration (UserName, Password, Email, IsActive) VALUES (@UserName, @Password, @Email, @IsActive)";
+
+            int rowsAffected = 0;
+            using (var connection = this._appDbContext.Connection())
+            {
+
+                rowsAffected = connection.Execute(query, registration);
+
+                if (rowsAffected > 0)
+                {
+                    return "Data Inserted";
+                }
+                else
+                {
+                    return "Error";
+                }
+            }
+        }
+        public string LoginUser(string email, string password)
+        {
+            using (var connection = this._appDbContext.Connection())
+            {
+                var user = connection.QueryFirstOrDefault<LoginModel>("SELECT * FROM Registration WHERE Email = @Email AND Password = @Password AND IsActive = 1",
+                                                            new { Email = email, Password = password });
+                if (user != null)
+                {
+                    return GenerateToken(user.Email);
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }*/
+
+
 
         private string GenerateToken(string email)
         {

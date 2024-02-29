@@ -30,7 +30,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IRepo, ImplementationRepo>();
+builder.Services.AddSingleton<IRegAndLoginRepo, RegAndLoginRepo>();
 
 var app = builder.Build();
 
