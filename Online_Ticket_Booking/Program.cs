@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Online_Ticket_Booking.Repositories.Implemantations;
 using Online_Ticket_Booking.Repositories.Interfaces;
+using Online_Ticket_Booking.Services.Implemantations;
+using Online_Ticket_Booking.Services.Interfaces;
 using System.Text;
 
 
@@ -31,6 +33,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IRegAndLoginRepo, RegAndLoginRepo>();
+builder.Services.AddSingleton<IRegAndLoginService, RegAndLoginService>();
 
 var app = builder.Build();
 

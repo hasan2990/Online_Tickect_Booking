@@ -2,6 +2,7 @@
 using Online_Ticket_Booking.Models;
 
 using Online_Ticket_Booking.Repositories.Interfaces;
+using Online_Ticket_Booking.Services.Interfaces;
 
 
 namespace Online_Ticket_Booking.Controllers
@@ -10,18 +11,19 @@ namespace Online_Ticket_Booking.Controllers
     [ApiController]
     public class RegistrationController : ControllerBase
     {
-        private readonly IRegAndLoginRepo _registrationRepository;
+        /*private readonly IRegAndLoginRepo _registrationRepository;*/
+        private readonly IRegAndLoginService _iRegAndLoginService;
 
-        public RegistrationController(IRegAndLoginRepo registrationRepository)
+        public RegistrationController(IRegAndLoginService iRegAndLoginService)
         {
-            _registrationRepository = registrationRepository;
+            _iRegAndLoginService = iRegAndLoginService;   
         }
 
         [HttpPost]
         [Route("api/registration")]
         public string Registration(RegistrationModel registration)
         {
-            return _registrationRepository.RegisterUser(registration);
+            return _iRegAndLoginService.ServiceRegisterUser(registration);
            
         }
 
@@ -29,7 +31,7 @@ namespace Online_Ticket_Booking.Controllers
         [Route("api/login")]
         public IActionResult Login(LoginModel login)
         {
-            var token = _registrationRepository.LoginUser(login.Email, login.Password);
+            var token = _iRegAndLoginService.ServiceLoginUser(login.Email, login.Password);
 
             if (!string.IsNullOrEmpty(token))
             {
