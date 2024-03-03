@@ -6,64 +6,17 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Online_Ticket_Booking.Models;
-using Microsoft.Data.SqlClient;
 namespace Online_Ticket_Booking.Repositories.Implemantations
 {
-    public class RegAndLoginRepo : IRegAndLoginRepo
+    public class LoginRepo : ILoginRepo
     {
-        /*private readonly IConfiguration _configuration;
-        public RegAndLoginRepo(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
-        public string RegisterUser(RegistrationModel registration)
-        {
-            string connectionString = _configuration.GetConnectionString("CrudConnection");
-
-            using (var con = new SqlConnection(connectionString))
-            {
-                con.Open();
-                var query = "INSERT INTO Registration (UserName, Password, Email, IsActive) VALUES (@UserName, @Password, @Email, @IsActive)";
-                int rowsAffected = con.Execute(query, registration);
-
-                if (rowsAffected > 0)
-                {
-                    return ("Registration successful.");
-                }
-                else
-                {
-                    return ("Registration failed due to invalid data.");
-                }
-            }
-        }
-        public string LoginUser(string email, string password)
-        {
-            string connectionString = _configuration.GetConnectionString("CrudConnection");
-            using (var con = new SqlConnection(connectionString))
-            {
-                con.Open();
-                var user = con.QueryFirstOrDefault<LoginModel>("SELECT * FROM Registration WHERE Email = @Email AND Password = @Password AND IsActive = 1",
-                                                            new { Email = email, Password = password });
-
-                if (user != null)
-                {
-                    return GenerateToken(user.Email);
-                }
-                else
-                {
-                    return "";
-                }
-            }
-        }*/
-
         private readonly AppDbContext _appDbContext;
-        public RegAndLoginRepo(AppDbContext appDbContext)
+        public LoginRepo(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
 
-        public string RegisterUser(RegistrationModel registration)
+        /*public string RegisterUser(RegistrationModel registration)
         {
             string query = "INSERT INTO Registration (UserName, Password, Email, IsActive) VALUES (@UserName, @Password, @Email, @IsActive)";
 
@@ -82,7 +35,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                     return "Error";
                 }
             }
-        }
+        }*/
         public string LoginUser(string email, string password)
         {
             using (var connection = this._appDbContext.Connection())

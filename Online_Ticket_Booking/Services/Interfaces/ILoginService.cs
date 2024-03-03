@@ -2,9 +2,8 @@
 
 namespace Online_Ticket_Booking.Services.Interfaces
 {
-    public interface IRegAndLoginService
+    public interface ILoginService
     {
-        string ServiceRegisterUser(RegistrationModel registration);
         string ServiceLoginUser(string email, string password);
     }
 }

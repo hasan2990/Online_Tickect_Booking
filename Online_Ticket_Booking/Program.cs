@@ -34,8 +34,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IRegAndLoginRepo, RegAndLoginRepo>();
-builder.Services.AddSingleton<IRegAndLoginService, RegAndLoginService>();
+builder.Services.AddSingleton<IRegistrationRepo, RegistrationRepo>();
+builder.Services.AddSingleton<IRegistrationService, RegistrationService>();
+builder.Services.AddSingleton<ILoginRepo, LoginRepo>();
+builder.Services.AddSingleton<ILoginService, LoginService>();
 builder.Services.AddTransient<AppDbContext>();
 
 var app = builder.Build();
