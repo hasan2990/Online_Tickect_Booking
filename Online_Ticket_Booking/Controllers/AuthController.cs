@@ -20,23 +20,23 @@ namespace Online_Ticket_Booking.Controllers
 
         [HttpPost]
         [Route("api/registration")]
-        public string Registration(User registration)
+        public async Task<string> Registration(User registration)
         {
-            return _iRegistrationService.ServiceRegisterUser(registration);             
+            return await _iRegistrationService.ServiceRegisterUser(registration);             
         }
 
         [HttpPost]
         [Route("api/login")]
-        public IActionResult Login(Login login)
+        public async Task<IActionResult> Login(Login login)
         {
-            bool emailExists = _iLoginService.CheckEmailExists(login.email);
+            bool emailExists = await _iLoginService.CheckEmailExists(login.email);
 
             if (!emailExists)
             {         
                 return BadRequest("Invalid email.");
             }
 
-            var token = _iLoginService.ServiceLoginUser(login.email, login.password);
+            var token = await _iLoginService.ServiceLoginUser(login.email, login.password);
 
             if (!string.IsNullOrEmpty(token))
             {

@@ -12,9 +12,9 @@ namespace Online_Ticket_Booking.Services.Implemantations
         {
             _iRegistrationRepo = iRegistrationRepo;
         }
-        public string ServiceRegisterUser(User registration)
+        public async Task<string> ServiceRegisterUser(User registration)
         {
-            return _iRegistrationRepo.RegisterUser(registration);
+            return await _iRegistrationRepo.RegisterUser(registration);
         }
     }
 }

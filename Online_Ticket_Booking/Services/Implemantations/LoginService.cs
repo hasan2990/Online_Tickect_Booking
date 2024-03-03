@@ -11,14 +11,14 @@ namespace Online_Ticket_Booking.Services.Implemantations
         {
             _iLoginRepo = iLoginRepo;
         }
-        public string ServiceLoginUser(string email, string password)
+        public async Task<string> ServiceLoginUser(string email, string password)
         {
-          return _iLoginRepo.LoginUser(email, password);
+          return await _iLoginRepo.LoginUser(email, password);
         }
 
-        public bool CheckEmailExists(string email)
+        public async Task<bool> CheckEmailExists(string email)
         {
-            return _iLoginRepo.CheckEmailExists(email);
+            return await _iLoginRepo.CheckEmailExists(email);
         }
 
     }

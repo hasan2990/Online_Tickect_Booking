@@ -13,7 +13,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             _appDbContext = appDbContext;
         }
 
-        public string RegisterUser(User registration)
+        public async Task<string> RegisterUser(User registration)
         {
             string query = "INSERT INTO Users (username, password, email, IsActive,phone_number) VALUES (@username, @password, @email, @IsActive, @phone_number)";
 
@@ -21,7 +21,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             using (var connection = this._appDbContext.Connection())
             {
 
-                rowsAffected = connection.Execute(query, registration);
+                rowsAffected = await connection.ExecuteAsync(query, registration);
 
                 if (rowsAffected > 0)
                 {

@@ -16,20 +16,20 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             _appDbContext = appDbContext;
         }
 
-        public bool CheckEmailExists(string email)
+        public async Task<bool> CheckEmailExists(string email)
         {
             using (var connection = _appDbContext.Connection())
             {
-                var user = connection.QueryFirstOrDefault<User>("SELECT * FROM Users WHERE email = @Email", new { Email = email });
+                var user = await connection.QueryFirstOrDefaultAsync<User>("SELECT * FROM Users WHERE email = @Email", new { Email = email });
                 return user != null;
             }
         }
 
-        public string LoginUser(string email, string password)
+        public async Task<string> LoginUser(string email, string password)
         {
             using (var connection = this._appDbContext.Connection())
             {
-                var user = connection.QueryFirstOrDefault<Login>("SELECT * FROM Users WHERE email = @email AND password = @password AND IsActive = 1",
+                var user = await connection.QueryFirstOrDefaultAsync<Login>("SELECT * FROM Users WHERE email = @email AND password = @password AND IsActive = 1",
                                                             new { Email = email, Password = password });
                 if (user != null)
                 {

@@ -4,6 +4,6 @@ namespace Online_Ticket_Booking.Services.Interfaces
 {
     public interface IRegistrationService
     {
-        string ServiceRegisterUser(User registration);
+        Task<string> ServiceRegisterUser(User registration);
     }
 }
