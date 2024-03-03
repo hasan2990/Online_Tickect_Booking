@@ -38,6 +38,10 @@ builder.Services.AddSingleton<IRegistrationRepo, RegistrationRepo>();
 builder.Services.AddSingleton<IRegistrationService, RegistrationService>();
 builder.Services.AddSingleton<ILoginRepo, LoginRepo>();
 builder.Services.AddSingleton<ILoginService, LoginService>();
+builder.Services.AddSingleton<IBusRepo, BusRepo>();
+builder.Services.AddSingleton<IBusService, BusService>();
+builder.Services.AddSingleton<IRoadRepo, RoadRepo>();
+builder.Services.AddSingleton<IRoadService, RoadService>();
 builder.Services.AddTransient<AppDbContext>();
 
 var app = builder.Build();

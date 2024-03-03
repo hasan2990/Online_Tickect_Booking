@@ -4,28 +4,27 @@ using Online_Ticket_Booking.Repositories.Interfaces;
 
 namespace Online_Ticket_Booking.Repositories.Implemantations
 {
-    public class RegistrationRepo:IRegistrationRepo
+    public class BusRepo:IBusRepo
     {
         private readonly AppDbContext _appDbContext;
-
-        public RegistrationRepo(AppDbContext appDbContext)
+        public BusRepo(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
 
-        public async Task<string> RegisterUser(User registration)
+        public async Task<string> BusUser(Bus use)
         {
-            string query = "INSERT INTO Users (username, password, email, IsActive,phone_number) VALUES (@username, @password, @email, @IsActive, @phone_number)";
+            string query = "INSERT INTO Buses (bus_name, capacity, type, route_id) VALUES (@bus_name, @capacity, @type,@route_id)";
 
             int rowsAffected = 0;
             using (var connection = this._appDbContext.Connection())
             {
 
-                rowsAffected = await connection.ExecuteAsync(query, registration);
+                rowsAffected = await connection.ExecuteAsync(query, use);
 
                 if (rowsAffected > 0)
                 {
-                    return "Registration Complete";
+                    return "Bus details are added to the databse";
                 }
                 else
                 {

@@ -2,18 +2,18 @@
 
 namespace Online_Ticket_Booking.Models
 {
-    public class Route
+    public class Road
     {
         public int route_id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Source is required")]
         public string source { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Destination is required")]
         public string destination { get; set; }
 
         public decimal distance { get; set; }
 
-        public TimeSpan duration { get; set; }
+        public string price { get; set; } 
     }
 }

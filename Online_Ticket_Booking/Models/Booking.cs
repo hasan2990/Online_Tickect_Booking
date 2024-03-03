@@ -22,9 +22,9 @@ namespace Online_Ticket_Booking.Models
 
         public string status { get; set; }
 
-        // Add navigation properties if needed
+        // Add navigation properties 
         public User User { get; set; }
-        public Route Route { get; set; }
+        public Road Route { get; set; }
         public Bus Bus { get; set; }
     }
 }

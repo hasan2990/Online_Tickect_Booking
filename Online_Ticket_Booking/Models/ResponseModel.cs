@@ -4,5 +4,6 @@
     {
         public int statusCode { get; set; }
         public string statusMessage { get; set; }
+        public string token { get; set; }
     }
 }

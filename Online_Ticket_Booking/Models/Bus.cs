@@ -12,5 +12,7 @@ namespace Online_Ticket_Booking.Models
         public int capacity { get; set; }
 
         public string type { get; set; }
+        [Required(ErrorMessage = "route_id is Required")]
+        public int route_id {  get; set; }
     }
 }
