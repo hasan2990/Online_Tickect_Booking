@@ -16,35 +16,24 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             _appDbContext = appDbContext;
         }
 
-        /*public string RegisterUser(RegistrationModel registration)
+        public bool CheckEmailExists(string email)
         {
-            string query = "INSERT INTO Registration (UserName, Password, Email, IsActive) VALUES (@UserName, @Password, @Email, @IsActive)";
-
-            int rowsAffected = 0;
-            using (var connection = this._appDbContext.Connection())
+            using (var connection = _appDbContext.Connection())
             {
-
-                rowsAffected = connection.Execute(query, registration);
-
-                if (rowsAffected > 0)
-                {
-                    return "Data Inserted";
-                }
-                else
-                {
-                    return "Error";
-                }
+                var user = connection.QueryFirstOrDefault<User>("SELECT * FROM Users WHERE email = @Email", new { Email = email });
+                return user != null;
             }
-        }*/
+        }
+
         public string LoginUser(string email, string password)
         {
             using (var connection = this._appDbContext.Connection())
             {
-                var user = connection.QueryFirstOrDefault<LoginModel>("SELECT * FROM Registration WHERE Email = @Email AND Password = @Password AND IsActive = 1",
+                var user = connection.QueryFirstOrDefault<Login>("SELECT * FROM Users WHERE email = @email AND password = @password AND IsActive = 1",
                                                             new { Email = email, Password = password });
                 if (user != null)
                 {
-                    return GenerateToken(user.Email);
+                    return GenerateToken(user.email);
                 }
                 else
                 {
@@ -79,5 +68,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
 
             return jwtToken;
         }
+
+       
     }
 }

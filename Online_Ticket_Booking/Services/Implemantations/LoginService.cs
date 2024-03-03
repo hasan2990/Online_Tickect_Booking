@@ -16,5 +16,10 @@ namespace Online_Ticket_Booking.Services.Implemantations
           return _iLoginRepo.LoginUser(email, password);
         }
 
+        public bool CheckEmailExists(string email)
+        {
+            return _iLoginRepo.CheckEmailExists(email);
+        }
+
     }
 }

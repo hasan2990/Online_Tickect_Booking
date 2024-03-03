@@ -4,6 +4,6 @@ namespace Online_Ticket_Booking.Repositories.Interfaces
 {
     public interface IRegistrationRepo
     {
-        string RegisterUser(RegistrationModel registration);
+        string RegisterUser(User registration);
     }
 }

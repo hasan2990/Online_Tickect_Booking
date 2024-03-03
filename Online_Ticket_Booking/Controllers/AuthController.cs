@@ -20,21 +20,29 @@ namespace Online_Ticket_Booking.Controllers
 
         [HttpPost]
         [Route("api/registration")]
-        public string Registration(RegistrationModel registration)
+        public string Registration(User registration)
         {
             return _iRegistrationService.ServiceRegisterUser(registration);             
         }
 
         [HttpPost]
         [Route("api/login")]
-        public IActionResult Login(LoginModel login)
+        public IActionResult Login(Login login)
         {
-            var token = _iLoginService.ServiceLoginUser(login.Email, login.Password);
+            bool emailExists = _iLoginService.CheckEmailExists(login.email);
+
+            if (!emailExists)
+            {         
+                return BadRequest("Invalid email.");
+            }
+
+            var token = _iLoginService.ServiceLoginUser(login.email, login.password);
 
             if (!string.IsNullOrEmpty(token))
             {
                 return Ok(new { Token = token, Message = "Token generated successfully." });
             }
+           
             else
             {
                 return BadRequest("Not Found");

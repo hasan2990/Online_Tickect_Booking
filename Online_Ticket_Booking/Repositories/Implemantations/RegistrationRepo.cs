@@ -13,9 +13,9 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             _appDbContext = appDbContext;
         }
 
-        public string RegisterUser(RegistrationModel registration)
+        public string RegisterUser(User registration)
         {
-            string query = "INSERT INTO Registration (UserName, Password, Email, IsActive) VALUES (@UserName, @Password, @Email, @IsActive)";
+            string query = "INSERT INTO Users (username, password, email, IsActive,phone_number) VALUES (@username, @password, @email, @IsActive, @phone_number)";
 
             int rowsAffected = 0;
             using (var connection = this._appDbContext.Connection())

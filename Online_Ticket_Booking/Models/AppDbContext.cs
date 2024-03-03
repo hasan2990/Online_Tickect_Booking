@@ -14,6 +14,9 @@ namespace Online_Ticket_Booking.Models
             this._databaseName = this._configuration.GetConnectionString("CrudConnection");
         }
 
+        public object Users { get; internal set; }
+
+
         public IDbConnection Connection() => new SqlConnection(this._databaseName);
 
     }
