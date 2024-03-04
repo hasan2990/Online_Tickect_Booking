@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Online_Ticket_Booking.Models;
 using Online_Ticket_Booking.Services.Implemantations;
 using Online_Ticket_Booking.Services.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace Online_Ticket_Booking.Controllers
 {
@@ -16,13 +18,15 @@ namespace Online_Ticket_Booking.Controllers
         {
             _getBusesService = getBusesService;
         }
-        [HttpPost]
+
+        [HttpGet]
         [Route("GetBusDetails")]
-        public async Task<IActionResult> GetBusDetails(SearchBusesInfo route)
+        public async Task<IActionResult> GetBusDetails(string source, string destination)
         {
             try
             {
-                var buses = await _getBusesService.ServiceGetBuses(route);
+                var searchInfo = new SearchBusesInfo { source = source, destination = destination };
+                var buses = await _getBusesService.ServiceGetBuses(searchInfo);
                 return Ok(buses);
             }
             catch (Exception ex)
