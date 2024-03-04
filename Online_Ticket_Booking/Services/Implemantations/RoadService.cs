@@ -12,7 +12,7 @@ namespace Online_Ticket_Booking.Services.Implemantations
             _roadRepo = roadRepo;
         }
 
-        public async Task<string> ServiceRoadUser(Road use)
+        public async Task<string> ServiceRoadUser(RoadInfo use)
         {
            return await _roadRepo.RoadUser(use);
         }

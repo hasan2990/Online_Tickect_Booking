@@ -24,7 +24,7 @@ namespace Online_Ticket_Booking.Models
 
         // Add navigation properties 
         public User User { get; set; }
-        public Road Route { get; set; }
-        public Bus Bus { get; set; }
+        public RoadInfo Route { get; set; }
+        public BusInfo Bus { get; set; }
     }
 }

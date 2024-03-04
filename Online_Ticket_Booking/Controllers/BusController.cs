@@ -15,8 +15,9 @@ namespace Online_Ticket_Booking.Controllers
             _busService = busService;
         }
         [HttpPost]
-        
-        public async Task<string> BusDetails(Bus use)
+        [Route("BusDetails")]
+
+        public async Task<string> BusDetails(BusInfo use)
         {
             return await _busService.ServiceBusUser(use);
         }

@@ -2,8 +2,8 @@
 
 namespace Online_Ticket_Booking.Repositories.Interfaces
 {
-    public interface IRoadRepo
+    public interface IGetBusesRepo
     {
-        Task<string> RoadUser(RoadInfo use);
+        Task<List<SelectedBusesModel>> GetBusesUser(SearchBusesInfo use);
     }
 }

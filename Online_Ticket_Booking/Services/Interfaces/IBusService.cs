@@ -4,6 +4,6 @@ namespace Online_Ticket_Booking.Services.Interfaces
 {
     public interface IBusService
     {
-        Task<string> ServiceBusUser(Bus use);
+        Task<string> ServiceBusUser(BusInfo use);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Online_Ticket_Booking.Models
 {
-    public class Road
+    public class RoadInfo
     {
         public int route_id { get; set; }
 

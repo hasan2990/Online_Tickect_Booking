@@ -15,7 +15,7 @@ namespace Online_Ticket_Booking.Services.Implemantations
             _busRepo = busRepo;
         }
 
-        public async Task<string> ServiceBusUser(Bus use)
+        public async Task<string> ServiceBusUser(BusInfo use)
         {
             return await _busRepo.BusUser(use);
         }

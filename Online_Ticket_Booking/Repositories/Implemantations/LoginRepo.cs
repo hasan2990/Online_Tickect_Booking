@@ -20,7 +20,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
         {
             using (var connection = _appDbContext.Connection())
             {
-                var user = await connection.QueryFirstOrDefaultAsync<User>("SELECT * FROM Users WHERE email = @Email", new { Email = email });
+                var user = await connection.QueryFirstOrDefaultAsync<User>(@"SELECT * FROM Users WHERE email = @Email", new { Email = email });
                 return user != null;
             }
         }

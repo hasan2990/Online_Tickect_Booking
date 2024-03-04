@@ -12,9 +12,9 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             _appDbContext = appDbContext;
         }
 
-        public async Task<string> BusUser(Bus use)
+        public async Task<string> BusUser(BusInfo use)
         {
-            string query = "INSERT INTO Buses (bus_name, capacity, type, route_id) VALUES (@bus_name, @capacity, @type,@route_id)";
+            string query = @"INSERT INTO Buses (bus_name, capacity, type) VALUES (@bus_name, @capacity, @type)";
 
             int rowsAffected = 0;
             using (var connection = this._appDbContext.Connection())
@@ -24,7 +24,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
 
                 if (rowsAffected > 0)
                 {
-                    return "Bus details are added to the databse";
+                    return "Bus details are added to the database";
                 }
                 else
                 {

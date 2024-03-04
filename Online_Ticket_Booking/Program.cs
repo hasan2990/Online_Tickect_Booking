@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Online_Ticket_Booking.Models;
 using Online_Ticket_Booking.Repositories.Implemantations;
+using Online_Ticket_Booking.Repositories.Implementations;
 using Online_Ticket_Booking.Repositories.Interfaces;
 using Online_Ticket_Booking.Services.Implemantations;
 using Online_Ticket_Booking.Services.Interfaces;
@@ -42,6 +43,8 @@ builder.Services.AddSingleton<IBusRepo, BusRepo>();
 builder.Services.AddSingleton<IBusService, BusService>();
 builder.Services.AddSingleton<IRoadRepo, RoadRepo>();
 builder.Services.AddSingleton<IRoadService, RoadService>();
+builder.Services.AddSingleton<IGetBusesRepo, GetBusesRepo>();
+builder.Services.AddSingleton<IGetBusesService, GetBusesService>();
 builder.Services.AddTransient<AppDbContext>();
 
 var app = builder.Build();

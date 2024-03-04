@@ -12,9 +12,9 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             _appDbContext = appDbContext;
         }
 
-        public async Task<string> RoadUser(Road use)
+        public async Task<string> RoadUser(RoadInfo use)
         {
-            string query = "INSERT INTO Routes (source, destination, distance, price) VALUES (@source, @destination, @distance, @price)";
+            string query = @"INSERT INTO Routes (source, destination, distance, price) VALUES (@source, @destination, @distance, @price)";
 
             int rowsAffected = 0;
             using (var connection = this._appDbContext.Connection())
@@ -24,7 +24,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
 
                 if (rowsAffected > 0)
                 {
-                    return "Route details are added to the databse";
+                    return "Route details are added to the database";
                 }
                 else
                 {
