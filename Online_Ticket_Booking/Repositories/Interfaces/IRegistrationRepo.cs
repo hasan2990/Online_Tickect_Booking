@@ -1,4 +1,4 @@
-﻿using Online_Ticket_Booking.Models;
+﻿using Online_Ticket_Booking.Models.Authentication;
 
 namespace Online_Ticket_Booking.Repositories.Interfaces
 {

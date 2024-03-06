@@ -17,9 +17,10 @@ namespace Online_Ticket_Booking.Controllers
         [HttpPost]
         [Route("BusDetails")]
 
-        public async Task<string> BusDetails(BusInfo use)
+        public async Task<IActionResult> BusDetails(BusInfo use)
         {
-            return await _busService.ServiceBusUser(use);
+            var businfo = await _busService.ServiceBusUser(use);
+            return Ok(businfo);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Online_Ticket_Booking.Models.Authentication;
 
 namespace Online_Ticket_Booking.Models
 {

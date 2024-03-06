@@ -1,4 +1,5 @@
 ﻿using Online_Ticket_Booking.Models;
+using Online_Ticket_Booking.Models.Responses;
 using Online_Ticket_Booking.Repositories.Interfaces;
 using Online_Ticket_Booking.Services.Interfaces;
 
@@ -12,9 +13,14 @@ namespace Online_Ticket_Booking.Services.Implemantations
             _roadRepo = roadRepo;
         }
 
-        public async Task<string> ServiceRoadUser(RoadInfo use)
+        public async Task<ResponseModel> ServiceRoadUser(RoadInfo use)
         {
-           return await _roadRepo.RoadUser(use);
+            ResponseModel response = new ResponseModel();
+
+            response.isSuccess = true;
+            response.statusMessage = await _roadRepo.RoadUser(use);
+
+            return response;
         }
     }
 }

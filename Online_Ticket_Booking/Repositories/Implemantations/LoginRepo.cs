@@ -5,7 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Online_Ticket_Booking.Models;
+using Online_Ticket_Booking.Models.Authentication;
+using Online_Ticket_Booking.Models.Data;
 namespace Online_Ticket_Booking.Repositories.Implemantations
 {
     public class LoginRepo : ILoginRepo

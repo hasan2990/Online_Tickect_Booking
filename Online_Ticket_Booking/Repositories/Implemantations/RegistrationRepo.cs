@@ -1,5 +1,6 @@
 ﻿using Dapper;
-using Online_Ticket_Booking.Models;
+using Online_Ticket_Booking.Models.Authentication;
+using Online_Ticket_Booking.Models.Data;
 using Online_Ticket_Booking.Repositories.Interfaces;
 
 namespace Online_Ticket_Booking.Repositories.Implemantations

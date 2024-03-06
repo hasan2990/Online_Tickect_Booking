@@ -1,9 +1,10 @@
 ﻿using Online_Ticket_Booking.Models;
+using Online_Ticket_Booking.Models.Responses;
 
 namespace Online_Ticket_Booking.Services.Interfaces
 {
     public interface IGetBusesService
     {
-        Task<List<SelectedBusesModel>> ServiceGetBuses(SearchBusesInfo use);
+       public  Task<SelectedBusesResponse> ServiceGetBuses(SearchBusesInfo use);
     }
 }

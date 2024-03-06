@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Online_Ticket_Booking.Models
+namespace Online_Ticket_Booking.Models.Authentication
 {
     public class User
     {

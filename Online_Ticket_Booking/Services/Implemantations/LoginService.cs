@@ -1,6 +1,9 @@
-﻿using Online_Ticket_Booking.Models;
+﻿using NuGet.Common;
+using Online_Ticket_Booking.Models.Responses;
+using Online_Ticket_Booking.Repositories.Implemantations;
 using Online_Ticket_Booking.Repositories.Interfaces;
 using Online_Ticket_Booking.Services.Interfaces;
+
 
 namespace Online_Ticket_Booking.Services.Implemantations
 {
@@ -11,14 +14,22 @@ namespace Online_Ticket_Booking.Services.Implemantations
         {
             _iLoginRepo = iLoginRepo;
         }
-        public async Task<string> ServiceLoginUser(string email, string password)
-        {
-          return await _iLoginRepo.LoginUser(email, password);
-        }
-
         public async Task<bool> CheckEmailExists(string email)
         {
             return await _iLoginRepo.CheckEmailExists(email);
+        }
+        public async Task<ResponseModel> ServiceLoginUser(string email, string password)
+        {
+            ResponseModel response = new ResponseModel();
+
+
+            var token = await _iLoginRepo.LoginUser(email, password);
+            response.isSuccess = true;
+            response.statusMessage = "Token generated successfully.";
+            response.token = token;
+
+
+            return response;
         }
 
     }

@@ -18,9 +18,10 @@ namespace Online_Ticket_Booking.Controllers
         [Route("RoadDetails")]
 
 
-        public async Task<string>RoadDetails(RoadInfo use)
+        public async Task<IActionResult>RoadDetails(RoadInfo use)
         {
-            return await _roadService.ServiceRoadUser(use);
+            var roadinfo = await _roadService.ServiceRoadUser(use);
+            return Ok(roadinfo);
         }
     }
 }

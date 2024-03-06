@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Online_Ticket_Booking.Models;
+using Online_Ticket_Booking.Models.Data;
 using Online_Ticket_Booking.Repositories.Implemantations;
 using Online_Ticket_Booking.Repositories.Implementations;
 using Online_Ticket_Booking.Repositories.Interfaces;
 using Online_Ticket_Booking.Services.Implemantations;
+using Online_Ticket_Booking.Services.Implementations;
 using Online_Ticket_Booking.Services.Interfaces;
 using System.Text;
 

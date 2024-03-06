@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace Online_Ticket_Booking.Models
+namespace Online_Ticket_Booking.Models.Data
 {
     public class AppDbContext
     {
@@ -10,14 +10,14 @@ namespace Online_Ticket_Booking.Models
 
         public AppDbContext(IConfiguration configuration)
         {
-            this._configuration = configuration;
-            this._databaseName = this._configuration.GetConnectionString("CrudConnection");
+            _configuration = configuration;
+            _databaseName = _configuration.GetConnectionString("CrudConnection");
         }
 
         public object Users { get; internal set; }
 
 
-        public IDbConnection Connection() => new SqlConnection(this._databaseName);
+        public IDbConnection Connection() => new SqlConnection(_databaseName);
 
     }
 }

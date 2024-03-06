@@ -1,4 +1,5 @@
 ﻿using Online_Ticket_Booking.Models;
+using Online_Ticket_Booking.Models.Responses;
 using Online_Ticket_Booking.Repositories.Implemantations;
 using Online_Ticket_Booking.Repositories.Interfaces;
 using Online_Ticket_Booking.Services.Interfaces;
@@ -14,10 +15,14 @@ namespace Online_Ticket_Booking.Services.Implemantations
         {
             _busRepo = busRepo;
         }
-
-        public async Task<string> ServiceBusUser(BusInfo use)
+        public async Task<ResponseModel> ServiceBusUser(BusInfo use)
         {
-            return await _busRepo.BusUser(use);
+            ResponseModel response = new ResponseModel();
+         
+            response.isSuccess = true;
+            response.statusMessage = await _busRepo.BusUser(use);
+
+            return response;
         }
     }
 }

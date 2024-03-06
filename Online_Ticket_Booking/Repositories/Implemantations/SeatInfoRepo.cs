@@ -1,31 +1,29 @@
-﻿using Dapper;
+﻿/*using Dapper;
 using Online_Ticket_Booking.Models;
-using Online_Ticket_Booking.Models.Data;
 using Online_Ticket_Booking.Repositories.Interfaces;
 
 namespace Online_Ticket_Booking.Repositories.Implemantations
 {
-    public class RoadRepo : IRoadRepo
+    public class SeatInfoRepo : ISeatInfoRepo
     {
         private readonly AppDbContext _appDbContext;
-        public RoadRepo(AppDbContext appDbContext)
+        public SeatInfoRepo(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
-
-        public async Task<string> RoadUser(RoadInfo use)
+        public async Task<string> GetSeatInfoAsync(SeatInfo info)
         {
-            string query = @"INSERT INTO Routes (source, destination, distance, price) VALUES (@source, @destination, @distance, @price)";
+            string query = @"INSERT INTO SeatStatus (col_numb) VALUES (@user_id) WHERE bus_id = @BusInfo.bus_id";  
 
             int rowsAffected = 0;
             using (var connection = this._appDbContext.Connection())
             {
 
-                rowsAffected = await connection.ExecuteAsync(query, use);
+                rowsAffected = await connection.ExecuteAsync(query, info);
 
                 if (rowsAffected > 0)
                 {
-                    return "Route details are added to the database";
+                    return "Successful";
                 }
                 else
                 {
@@ -33,8 +31,6 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                 }
             }
         }
-
-        
-
     }
 }
+*/

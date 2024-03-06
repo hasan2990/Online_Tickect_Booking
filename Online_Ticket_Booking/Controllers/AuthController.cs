@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Online_Ticket_Booking.Models;
+using Online_Ticket_Booking.Models.Authentication;
 using Online_Ticket_Booking.Services.Interfaces;
 
 
@@ -20,9 +20,9 @@ namespace Online_Ticket_Booking.Controllers
 
         [HttpPost]
         [Route("api/registration")]
-        public async Task<string> Registration(User registration)
+        public async Task<IActionResult> Registration(User registration)
         {
-            return await _iRegistrationService.ServiceRegisterUser(registration);             
+            return Ok(await _iRegistrationService.ServiceRegisterUser(registration));             
         }
 
         [HttpPost]
@@ -32,21 +32,12 @@ namespace Online_Ticket_Booking.Controllers
             bool emailExists = await _iLoginService.CheckEmailExists(login.email);
 
             if (!emailExists)
-            {         
+            {
                 return BadRequest("Invalid email.");
             }
 
             var token = await _iLoginService.ServiceLoginUser(login.email, login.password);
-
-            if (!string.IsNullOrEmpty(token))
-            {
-                return Ok(new { Token = token, Message = "Token generated successfully." });
-            }
-           
-            else
-            {
-                return BadRequest("Not Found");
-            }
+            return Ok(token);
         }
     }
 }
