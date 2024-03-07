@@ -15,7 +15,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
 
         public async Task<string> RoadUser(RoadInfo use)
         {
-            string query = @"INSERT INTO Routes (source, destination, distance, price) VALUES (@source, @destination, @distance, @price)";
+            string query = @"INSERT INTO Routes (source, destination, distance) VALUES (@source, @destination, @distance)";
 
             int rowsAffected = 0;
             using (var connection = this._appDbContext.Connection())

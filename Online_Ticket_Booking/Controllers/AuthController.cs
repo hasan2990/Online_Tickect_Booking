@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Newtonsoft.Json;
+using NuGet.Common;
 using Online_Ticket_Booking.Models.Authentication;
+using Online_Ticket_Booking.Models.Responses;
 using Online_Ticket_Booking.Services.Interfaces;
 
 
@@ -52,6 +56,15 @@ namespace Online_Ticket_Booking.Controllers
             }
 
             var token = await _iLoginService.ServiceLoginUser(login.email, login.password);
+            return Ok(token);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("Authorization")]
+        public IActionResult VerifyToken(string email)
+        {
+            var token = "Authorization";
             return Ok(token);
         }
     }

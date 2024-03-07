@@ -5,6 +5,6 @@
         public bool isSuccess { get; set; }
         public string statusMessage { get; set; }
         public string token { get; set; }
-        public string refreshtoken { get; set; }
+        public string refreshToken { get; set; }
     }
 }
