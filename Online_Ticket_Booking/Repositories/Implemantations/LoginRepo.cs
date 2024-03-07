@@ -12,9 +12,12 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
     public class LoginRepo : ILoginRepo
     {
         private readonly AppDbContext _appDbContext;
-        public LoginRepo(AppDbContext appDbContext)
+        private readonly ILogger<LoginRepo> _logger;
+
+        public LoginRepo(AppDbContext appDbContext, ILogger<LoginRepo> logger)
         {
             _appDbContext = appDbContext;
+            _logger = logger;
         }
 
         public async Task<bool> CheckEmailExists(string email)
@@ -28,6 +31,8 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
 
         public async Task<string> LoginUser(string email, string password)
         {
+            _logger.LogInformation("LoginUser Method Calling in Repository Layer");
+
             using (var connection = this._appDbContext.Connection())
             {
                 var user = await connection.QueryFirstOrDefaultAsync<Login>("SELECT * FROM Users WHERE email = @email AND password = @password AND IsActive = 1",
@@ -38,6 +43,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                 }
                 else
                 {
+                    _logger.LogError("Error Occur : Query Not Executed");
                     return "";
                 }
             }
@@ -60,7 +66,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                     new Claim(JwtRegisteredClaimNames.Sub,email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
-                Expires = DateTime.UtcNow.AddHours(1),
+                Expires = DateTime.UtcNow.AddMinutes(15),
                 SigningCredentials = new SigningCredentials(new
                     SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

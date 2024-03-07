@@ -10,18 +10,23 @@ namespace Online_Ticket_Booking.Services.Implementations
     public class RegistrationService : IRegistrationService
     {
         private readonly IRegistrationRepo _iRegistrationRepo;
+        private readonly ILogger<RegistrationService> _logger;
+
 
         public readonly string EmailRegex = @"^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$";
         public readonly string PasswordRegex = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
         public readonly string MobileRegex = @"([1-9]{1}[0-9]{9})$";
 
-        public RegistrationService(IRegistrationRepo iRegistrationRepo)
+        public RegistrationService(IRegistrationRepo iRegistrationRepo, ILogger<RegistrationService> logger)
         {
             _iRegistrationRepo = iRegistrationRepo;
+            _logger = logger;
         }
 
         public async Task<ResponseModel> ServiceRegisterUser(User registration)
         {
+            _logger.LogInformation("ServiceRegisterUser Method Calling in Service Layer");
+            
             ResponseModel response = new ResponseModel();
 
             if (!Regex.IsMatch(registration.email, EmailRegex))

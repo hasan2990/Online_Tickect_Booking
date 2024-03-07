@@ -15,7 +15,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
 
         public async Task<string> BusUser(BusInfo use)
         {
-            string query = @"INSERT INTO Buses (bus_name, capacity, type) VALUES (@bus_name, @capacity, @type)";
+            string query = @"INSERT INTO Buses (bus_name, capacity, type, price) VALUES (@bus_name, @capacity, @type, @price)";
 
             int rowsAffected = 0;
             using (var connection = this._appDbContext.Connection())

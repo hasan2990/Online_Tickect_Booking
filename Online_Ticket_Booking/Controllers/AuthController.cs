@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Online_Ticket_Booking.Models.Authentication;
 using Online_Ticket_Booking.Services.Interfaces;
 
@@ -11,18 +12,32 @@ namespace Online_Ticket_Booking.Controllers
     {
         private readonly ILoginService _iLoginService;
         private readonly IRegistrationService _iRegistrationService;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(ILoginService iLoginService, IRegistrationService iRegistrationService)
+        public AuthController(
+            ILoginService iLoginService, 
+            IRegistrationService iRegistrationService,
+            ILogger<AuthController> logger)
         {
             _iLoginService = iLoginService;
             _iRegistrationService = iRegistrationService;
+            _logger = logger;
         }
 
         [HttpPost]
         [Route("api/registration")]
         public async Task<IActionResult> Registration(User registration)
         {
-            return Ok(await _iRegistrationService.ServiceRegisterUser(registration));             
+            _logger.LogInformation($"Registration API Calling in Controller...{JsonConvert.SerializeObject(registration)}");
+            try
+            {
+                return Ok(await _iRegistrationService.ServiceRegisterUser(registration));             
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Registration API Error Occur : Message {ex.Message}");
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost]
@@ -33,7 +48,7 @@ namespace Online_Ticket_Booking.Controllers
 
             if (!emailExists)
             {
-                return BadRequest("Invalid email.");
+                return BadRequest("Invalid Email Id.");
             }
 
             var token = await _iLoginService.ServiceLoginUser(login.email, login.password);

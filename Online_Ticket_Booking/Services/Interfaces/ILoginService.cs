@@ -5,6 +5,6 @@ namespace Online_Ticket_Booking.Services.Interfaces
     public interface ILoginService
     {
         Task<bool> CheckEmailExists(string email);
-        Task<ResponseModel> ServiceLoginUser(string email, string password);
+        Task<LoginResponse> ServiceLoginUser(string email, string password);
     }
 }

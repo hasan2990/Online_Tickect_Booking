@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿/*using System.ComponentModel.DataAnnotations;
 using Online_Ticket_Booking.Models.Authentication;
 
 namespace Online_Ticket_Booking.Models
@@ -29,3 +29,4 @@ namespace Online_Ticket_Booking.Models
         public BusInfo Bus { get; set; }
     }
 }
+*/

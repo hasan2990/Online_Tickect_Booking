@@ -7,6 +7,8 @@
         public int route_id { get; set; }
         public string source { get; set; }
         public string destination { get; set; }
+        public string price { get; set; }
+
 
     }
 }

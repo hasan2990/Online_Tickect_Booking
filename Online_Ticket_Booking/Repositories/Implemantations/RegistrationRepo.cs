@@ -8,14 +8,18 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
     public class RegistrationRepo:IRegistrationRepo
     {
         private readonly AppDbContext _appDbContext;
+        private readonly ILogger<RegistrationRepo> _logger;
 
-        public RegistrationRepo(AppDbContext appDbContext)
+        public RegistrationRepo(AppDbContext appDbContext, ILogger<RegistrationRepo> logger)
         {
             _appDbContext = appDbContext;
+            _logger = logger;
         }
 
         public async Task<string> RegisterUser(User registration)
         {
+            _logger.LogInformation("RegisterUser Method Calling in Repository Layer");
+            
             string query = @"INSERT INTO Users (username, password, email, IsActive,phone_number) VALUES (@username, @password, @email, @IsActive, @phone_number)";
 
             int rowsAffected = 0;
@@ -30,6 +34,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                 }
                 else
                 {
+                    _logger.LogError("Error Occur : Query Not Executed");
                     return "Error";
                 }
             }

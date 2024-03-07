@@ -24,7 +24,7 @@ namespace Online_Ticket_Booking.Repositories.Implementations
                 try
                 {
                     string query = @"
-                    SELECT b.bus_id, b.bus_name, r.route_id, r.source, r.destination
+                    SELECT b.bus_id, b.bus_name, r.route_id, r.source, r.destination,sb.price
                     FROM Buses b
                     JOIN SelectedBuses sb ON b.bus_id = sb.bus_id
                     JOIN Routes r ON r.route_id = sb.route_id
