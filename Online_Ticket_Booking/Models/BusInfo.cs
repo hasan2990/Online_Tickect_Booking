@@ -12,7 +12,6 @@ namespace Online_Ticket_Booking.Models
         public int capacity { get; set; }
 
         public string type { get; set; }
-        //public decimal price { get; set; }
 
     }
 }

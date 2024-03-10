@@ -17,23 +17,24 @@ namespace Online_Ticket_Booking.Repositories.Implementations
             _appDbContext = appDbContext;
         }
 
-        public async Task<List<SelectedBusesModel>> GetBusesUser(SearchBusesInfo use)
+        public async Task<List<PriceInfo>> GetBusesUser(SearchBusesInfo use)
         {
             using (var connection = this._appDbContext.Connection())
             {
                 try
                 {
                     string query = @"
-                    SELECT b.bus_id, b.bus_name, r.route_id, r.source, r.destination,sb.price
+                    SELECT b.bus_id, b.bus_name, r.route_id, r.source, r.destination, r.duration, p.price
                     FROM Buses b
-                    JOIN SelectedBuses sb ON b.bus_id = sb.bus_id
-                    JOIN Routes r ON r.route_id = sb.route_id
+                    JOIN Price p ON b.bus_id = p.bus_id
+                    JOIN Routes r ON r.route_id = p.route_id
                     WHERE r.source = @Source AND r.destination = @Destination;
+                   
                     ";
 
-                    List<SelectedBusesModel> selectedBusesModelList = new List<SelectedBusesModel>();
+                    List<PriceInfo> selectedBusesModelList = new List<PriceInfo>();
 
-                    var result = await connection.QueryAsync<SelectedBusesModel>(query, new { Source = use.source, Destination = use.destination });
+                    var result = await connection.QueryAsync<PriceInfo>(query, new { Source = use.source, Destination = use.destination });
                     selectedBusesModelList = result.ToList();
 
                     return selectedBusesModelList;

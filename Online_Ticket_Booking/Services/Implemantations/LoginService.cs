@@ -26,8 +26,6 @@ namespace Online_Ticket_Booking.Services.Implemantations
             return await _iLoginRepo.CheckEmailExists(email);
         }
 
-        
-
         public async Task<LoginResponse> ServiceLoginUser(string email, string password)
         {
             LoginResponse response = new LoginResponse();

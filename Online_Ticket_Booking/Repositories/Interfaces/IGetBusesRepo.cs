@@ -4,6 +4,6 @@ namespace Online_Ticket_Booking.Repositories.Interfaces
 {
     public interface IGetBusesRepo
     {
-        Task<List<SelectedBusesModel>> GetBusesUser(SearchBusesInfo use);
+        Task<List<PriceInfo>> GetBusesUser(SearchBusesInfo use);
     }
 }

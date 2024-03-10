@@ -1,8 +1,8 @@
 ﻿namespace Online_Ticket_Booking.Models.Responses
 {
-    public class SelectedBusesResponse
+    public class BookingResponse
     {
-        public List<PriceInfo> ServiceGetBuses { get; set; }
+        public List<Booking> bookingList { get; set; }
         public bool isSuccess { get; set; }
         public string statusMessage { get; set; }
     }

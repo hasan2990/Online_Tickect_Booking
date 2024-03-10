@@ -1,6 +1,6 @@
 ﻿namespace Online_Ticket_Booking.Models
 {
-    public class SelectedBusesModel
+    public class PriceInfo
     {
         public int bus_id { get; set; }
         public string bus_name { get; set; }

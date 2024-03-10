@@ -14,6 +14,6 @@ namespace Online_Ticket_Booking.Models
 
         public decimal distance { get; set; }
 
-        //public string price { get; set; } 
+        public decimal duration { get; set; } 
     }
 }
