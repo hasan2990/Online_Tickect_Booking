@@ -19,8 +19,9 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
         {
             try
             {
-                using (var connection = _appDbContext.Connection()){
-                   // connection.Open();
+                using (var connection = _appDbContext.Connection())
+                {
+                    // connection.Open();
                     string selectQuery = @"
                         SELECT b.booking_id, b.user_id, b.route_id, b.bus_id, b.ending_time, b.seat_no, b.isBooked
                         FROM Bookings b
@@ -41,26 +42,41 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             {
                 using (var connection = _appDbContext.Connection())
                 {
-                    string countQuery = @"
-                        SELECT COUNT(*) FROM Bookings
-                        WHERE user_id = @user_id AND bus_id = @bus_id AND route_id = @route_id;
-                    ";
-
-                    int bookingsCount = await connection.ExecuteScalarAsync<int>(countQuery, queryParameters);
-
-                    if (bookingsCount < 4)
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
                     {
-                        string insertQuery = @"
-                            INSERT INTO Bookings (user_id, route_id, bus_id, seat_no, isBooked)
-                            VALUES (@user_id, @route_id, @bus_id, @seat_no, 1);
-                        ";
+                        try
+                        {
+                            string countQuery = @"
+                                SELECT COUNT(*) FROM Bookings
+                                WHERE user_id = @user_id AND bus_id = @bus_id AND route_id = @route_id;
+                            ";
 
-                        await connection.ExecuteAsync(insertQuery, queryParameters);
-                        return new List<Booking>();
-                    }
-                    else
-                    {
-                        throw new Exception("The user has already booked 4 seats for this bus and route combination.");
+                            int bookingsCount = await connection.ExecuteScalarAsync<int>(countQuery, queryParameters, transaction);
+
+                            if (bookingsCount < 4)
+                            {
+                                string insertQuery = @"
+                                    INSERT INTO Bookings (user_id, route_id, bus_id, seat_no, isBooked)
+                                    VALUES (@user_id, @route_id, @bus_id, @seat_no, 1);
+                                ";
+
+                                await connection.ExecuteAsync(insertQuery, queryParameters, transaction);
+
+                                transaction.Commit();
+
+                                return new List<Booking>();
+                            }
+                            else
+                            {
+                                throw new Exception("The user has already booked 4 seats for this bus and route combination.");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            throw new Exception(ex.Message);
+                        }
                     }
                 }
             }
@@ -69,6 +85,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                 throw new Exception(ex.Message);
             }
         }
-
     }
 }
+
+

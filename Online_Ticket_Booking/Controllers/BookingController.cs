@@ -36,7 +36,7 @@ namespace Online_Ticket_Booking.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred: " + ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
     }
