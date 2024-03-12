@@ -24,17 +24,17 @@ namespace Online_Ticket_Booking.Repositories.Implementations
                 try
                 {
                     string query = @"
-                    SELECT b.bus_id, b.bus_name, r.route_id, r.source, r.destination, r.duration, p.price
+                    SELECT b.bus_id, b.bus_name, b.capacity, b.seatCount, r.route_id, r.source, r.destination, r.duration, p.price
                     FROM Buses b
                     JOIN Price p ON b.bus_id = p.bus_id
                     JOIN Routes r ON r.route_id = p.route_id
-                    WHERE r.source = @Source AND r.destination = @Destination;
+                    WHERE r.source = @source AND r.destination = @destination;
                    
                     ";
 
                     List<PriceInfo> selectedBusesModelList = new List<PriceInfo>();
 
-                    var result = await connection.QueryAsync<PriceInfo>(query, new { Source = use.source, Destination = use.destination });
+                    var result = await connection.QueryAsync<PriceInfo>(query, use);
                     selectedBusesModelList = result.ToList();
 
                     return selectedBusesModelList;

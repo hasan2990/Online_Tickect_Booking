@@ -13,40 +13,41 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
         {
             _appDbContext = appDbContext;
         }
-        public async Task<List<Booking>> GetBookingRepoAsync(Booking book)
+        public async Task<List<Booking>> GetBookingRepoAsync(BookingQueryParameters queryParameters)
         {
             using (var connection = this._appDbContext.Connection())
             {
-                using (var transaction = connection.BeginTransaction())
+                //using (var transaction = connection.BeginTransaction())
+                //{
+                try
                 {
-                    try
+                    string query = @"
+                    SELECT b.booking_id, b.user_id, b.route_id, b.bus_id, b.ending_time, b.seat_no, b.isBooked
+                    FROM Bookings b
+                    WHERE (b.bus_id = @bus_id AND b.seat_no = @seat_no AND b.isBooked = 1);
+                ";
+
+
+                    var result = await connection.QueryAsync<Booking>(query, queryParameters);
+
+                    if (result != null)
                     {
-                        string query = @"
-                            SELECT b.booking_id, b.user_id, b.route_id, b.bus_id, b.ending_time, b.seat_no
-                            FROM Bookings b
-                            JOIN PassengerInfo p ON p.booking_id = b.booking_id
-                            WHERE b.seat_no = @r.seat_no;
-                            ";
-
-
-                        var result = await connection.QueryAsync<Booking>(query);
-
-                        if (result != null)
-                        {
-
-                        }
-
+                        Console.WriteLine("Number of results: " + result.Count());
                         return result.ToList();
                     }
-                    catch (SqlException ex)
+                    else
                     {
-                        Console.WriteLine("SQL Error: " + ex.Message);
-                        throw new Exception(ex.Message);
+                        return new List<Booking>();
                     }
+                    //return result.ToList();
                 }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("SQL Error: " + ex.Message);
+                    throw new Exception(ex.Message);
+                }
+                //}
             }
         }
     }
 }
-
-

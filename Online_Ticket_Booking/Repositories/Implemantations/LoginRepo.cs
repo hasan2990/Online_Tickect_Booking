@@ -52,7 +52,9 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
         {
             var claims = new List<Claim> { new Claim(ClaimTypes.NameIdentifier, email) };
 
+#pragma warning disable CS8604 // Possible null reference argument.
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+#pragma warning restore CS8604 // Possible null reference argument.
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(

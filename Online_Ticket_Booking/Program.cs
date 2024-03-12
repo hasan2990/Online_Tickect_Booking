@@ -36,16 +36,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IRegistrationRepo, RegistrationRepo>();
-builder.Services.AddSingleton<IRegistrationService, RegistrationService>();
-builder.Services.AddSingleton<ILoginRepo, LoginRepo>();
-builder.Services.AddSingleton<ILoginService, LoginService>();
-builder.Services.AddSingleton<IBusRepo, BusRepo>();
-builder.Services.AddSingleton<IBusService, BusService>();
-builder.Services.AddSingleton<IRoadRepo, RoadRepo>();
-builder.Services.AddSingleton<IRoadService, RoadService>();
-builder.Services.AddSingleton<IGetBusesRepo, GetBusesRepo>();
-builder.Services.AddSingleton<IGetBusesService, GetBusesService>();
+builder.Services.AddTransient<IRegistrationRepo, RegistrationRepo>();
+builder.Services.AddTransient<IRegistrationService, RegistrationService>();
+builder.Services.AddTransient<ILoginRepo, LoginRepo>();
+builder.Services.AddTransient<ILoginService, LoginService>();
+builder.Services.AddTransient<IBusRepo, BusRepo>();
+builder.Services.AddTransient<IBusService, BusService>();
+builder.Services.AddTransient<IRoadRepo, RoadRepo>();
+builder.Services.AddTransient<IRoadService, RoadService>();
+builder.Services.AddTransient<IGetBusesRepo, GetBusesRepo>();
+builder.Services.AddTransient<IGetBusesService, GetBusesService>();
+builder.Services.AddTransient<IBookingRepo, BookingRepo>();
+builder.Services.AddTransient<IBookingService, BookingService>();
 builder.Services.AddTransient<AppDbContext>();
 
 var app = builder.Build();

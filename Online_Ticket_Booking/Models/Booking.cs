@@ -14,9 +14,11 @@ namespace Online_Ticket_Booking.Models
         public int bus_id { get; set; }
 
         public DateTime ending_time { get; set; }
-        public string seat_no { get; set; }
+        public string? seat_no { get; set; }
 
-        public PassengerInfo PassengerInfo { get; set; }
+        public bool? isBooked { get; set; } = false;
+
+        public PassengerInfo? PassengerInfo { get; set; }
 
     }
 }

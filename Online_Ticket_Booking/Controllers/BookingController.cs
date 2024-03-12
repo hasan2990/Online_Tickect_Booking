@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Online_Ticket_Booking.Models;
+using Online_Ticket_Booking.Models.Responses;
 using Online_Ticket_Booking.Services.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace Online_Ticket_Booking.Controllers
 {
@@ -17,18 +19,47 @@ namespace Online_Ticket_Booking.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBookings(Booking book)
+        public async Task<IActionResult> GetBookings([FromQuery] BookingQueryParameters queryParameters)
         {
-            var result = await _bookingService.GetBookingsAsync(book);
+            try
+            {
+                var result = await _bookingService.GetBookingsAsync(queryParameters);
 
-            if (result.isSuccess)
-            {
-                return Ok(result.bookingList);
+                if (result.isSuccess)
+                {
+                    return Ok(result.bookingList);
+                }
+                else
+                {
+                    return StatusCode(500, result.statusMessage);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return StatusCode(500, result.statusMessage);
+                return StatusCode(500, "An error occurred: " + ex.Message);
             }
         }
+
+        /*[HttpPost]
+        public async Task<IActionResult> BookSeat([FromBody] Booking booking)
+        {
+            try
+            {
+                var isBooked = await _bookingService.BookSeatAsync(booking);
+
+                if (isBooked)
+                {
+                    return Ok("Seat booked successfully.");
+                }
+                else
+                {
+                    return StatusCode(400, "Failed to book seat. Seat might already be booked.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred: " + ex.Message);
+            }
+        }*/
     }
 }

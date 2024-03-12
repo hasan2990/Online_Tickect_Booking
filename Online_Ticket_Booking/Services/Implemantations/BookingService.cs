@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using Online_Ticket_Booking.Repositories.Interfaces;
+﻿using Online_Ticket_Booking.Models;
 using Online_Ticket_Booking.Models.Responses;
+using Online_Ticket_Booking.Repositories.Interfaces;
 using Online_Ticket_Booking.Services.Interfaces;
-using Online_Ticket_Booking.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace Online_Ticket_Booking.Services.Implementations
 {
@@ -16,25 +16,16 @@ namespace Online_Ticket_Booking.Services.Implementations
             _bookingRepo = bookingRepo;
         }
 
-        public async Task<BookingResponse> GetBookingsAsync(Booking book)
+        public async Task<BookingResponse> GetBookingsAsync(BookingQueryParameters queryParameters)
         {
             try
             {
-                var bookingList = await _bookingRepo.GetBookingRepoAsync(book);
-                if(bookingList.Count == 0)
-                {
-                    return new BookingResponse
-                    {
-                        bookingList = bookingList,
-                        isSuccess = true,
-                        statusMessage = "Bookings retrieved successfully."
-                    };
-                }
+                var bookings = await _bookingRepo.GetBookingRepoAsync(queryParameters);
                 return new BookingResponse
                 {
-                    bookingList = bookingList,
+                    bookingList = bookings,
                     isSuccess = true,
-                    statusMessage = "Already booked"
+                    statusMessage = "Bookings retrieved successfully."
                 };
             }
             catch (Exception ex)
@@ -48,5 +39,18 @@ namespace Online_Ticket_Booking.Services.Implementations
                 };
             }
         }
+
+        /*public async Task<bool> BookSeatAsync(Booking booking)
+        {
+            try
+            {
+                return await _bookingRepo.BookSeatAsync(booking);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+        }*/
     }
 }
