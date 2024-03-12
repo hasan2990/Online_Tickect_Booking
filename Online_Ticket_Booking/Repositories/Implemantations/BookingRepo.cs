@@ -34,29 +34,41 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             {
                 throw new Exception(ex.Message);
             }
-}
+        }
         public async Task<List<Booking>> InsertBookingRepoAsync(BookingQueryParameters queryParameters)
         {
             try
             {
                 using (var connection = _appDbContext.Connection())
                 {
-                    //connection.Open();
-                    string insertQuery = @"
-                    INSERT INTO Bookings (user_id, route_id, bus_id, seat_no, isBooked)
-                    VALUES (@user_id, @route_id, @bus_id, @seat_no, 1);";
+                    string countQuery = @"
+                        SELECT COUNT(*) FROM Bookings
+                        WHERE user_id = @user_id AND bus_id = @bus_id AND route_id = @route_id;
+                    ";
 
-                    /*string insertQuery = @"
-                        INSERT INTO Bookings (bus_id, seat_no, isBooked)
-                        VALUES (@bus_id, @seat_no, 1);
-                    ";*/
-                    await connection.ExecuteAsync(insertQuery, queryParameters);
-                    return new List<Booking>();
+                    int bookingsCount = await connection.ExecuteScalarAsync<int>(countQuery, queryParameters);
+
+                    if (bookingsCount < 4)
+                    {
+                        string insertQuery = @"
+                            INSERT INTO Bookings (user_id, route_id, bus_id, seat_no, isBooked)
+                            VALUES (@user_id, @route_id, @bus_id, @seat_no, 1);
+                        ";
+
+                        await connection.ExecuteAsync(insertQuery, queryParameters);
+                        return new List<Booking>();
+                    }
+                    else
+                    {
+                        throw new Exception("The user has already booked 4 seats for this bus and route combination.");
+                    }
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
+
     }
 }
