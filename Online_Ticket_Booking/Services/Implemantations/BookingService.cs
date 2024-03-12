@@ -18,39 +18,17 @@ namespace Online_Ticket_Booking.Services.Implementations
 
         public async Task<BookingResponse> GetBookingsAsync(BookingQueryParameters queryParameters)
         {
-            try
+            BookingResponse response = new BookingResponse();
+            response.isSuccess = true;
+            response.statusMessage = "Data Found";
+            response.bookingList = await _bookingRepo.GetBookingRepoAsync(queryParameters);
+            if (response.bookingList.Count == 0)
             {
-                var bookings = await _bookingRepo.GetBookingRepoAsync(queryParameters);
-                return new BookingResponse
-                {
-                    bookingList = bookings,
-                    isSuccess = true,
-                    statusMessage = "Bookings retrieved successfully."
-                };
+                await _bookingRepo.InsertBookingRepoAsync(queryParameters);
+                response.bookingList = await _bookingRepo.GetBookingRepoAsync(queryParameters);
+                response.statusMessage = "Data Inserted";
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                return new BookingResponse
-                {
-                    bookingList = null,
-                    isSuccess = false,
-                    statusMessage = "Failed to retrieve bookings."
-                };
-            }
+            return response;
         }
-
-        /*public async Task<bool> BookSeatAsync(Booking booking)
-        {
-            try
-            {
-                return await _bookingRepo.BookSeatAsync(booking);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                return false;
-            }
-        }*/
     }
 }

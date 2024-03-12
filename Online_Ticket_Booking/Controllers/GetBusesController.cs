@@ -26,7 +26,7 @@ namespace Online_Ticket_Booking.Controllers
             try
             {
                 var searchInfo = new SearchBusesInfo { source = source, destination = destination };
-               
+
                 return Ok(await _getBusesService.ServiceGetBuses(searchInfo));
             }
             catch (Exception ex)

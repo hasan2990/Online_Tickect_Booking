@@ -27,7 +27,7 @@ namespace Online_Ticket_Booking.Controllers
 
                 if (result.isSuccess)
                 {
-                    return Ok(result.bookingList);
+                    return Ok(result);
                 }
                 else
                 {
@@ -39,27 +39,5 @@ namespace Online_Ticket_Booking.Controllers
                 return StatusCode(500, "An error occurred: " + ex.Message);
             }
         }
-
-        /*[HttpPost]
-        public async Task<IActionResult> BookSeat([FromBody] Booking booking)
-        {
-            try
-            {
-                var isBooked = await _bookingService.BookSeatAsync(booking);
-
-                if (isBooked)
-                {
-                    return Ok("Seat booked successfully.");
-                }
-                else
-                {
-                    return StatusCode(400, "Failed to book seat. Seat might already be booked.");
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "An error occurred: " + ex.Message);
-            }
-        }*/
     }
 }

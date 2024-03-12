@@ -12,12 +12,13 @@ namespace Online_Ticket_Booking.Services.Implemantations
         {
             _getBusesRepo = getBusesRepo;
         }
-        
+
 
        public async Task<SelectedBusesResponse> ServiceGetBuses(SearchBusesInfo use)
         {
             SelectedBusesResponse response = new SelectedBusesResponse();
             response.ServiceGetBuses = await _getBusesRepo.GetBusesUser(use);
+
             if (response.ServiceGetBuses != null && response.ServiceGetBuses.Count > 0)
             {
                 response.isSuccess = true;
