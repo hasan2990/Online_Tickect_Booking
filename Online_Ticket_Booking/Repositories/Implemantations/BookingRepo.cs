@@ -21,7 +21,6 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             {
                 using (var connection = _appDbContext.Connection())
                 {
-                    // connection.Open();
                     string selectQuery = @"
                         SELECT b.booking_id, b.user_id, b.route_id, b.bus_id, b.ending_time, b.seat_no, b.isBooked
                         FROM Bookings b
@@ -56,6 +55,10 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
 
                             if (bookingsCount < 4)
                             {
+                                /* int totalAmount = bookingsCount * 50;
+                                 bool paymentSuccessful = ProcessPayment(paymentInfo, totalAmount);
+                                 if (paymentSuccessful)
+                                 {*/
                                 string insertQuery = @"
                                     INSERT INTO Bookings (user_id, route_id, bus_id, seat_no, isBooked)
                                     VALUES (@user_id, @route_id, @bus_id, @seat_no, 1);
@@ -66,6 +69,11 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                                 transaction.Commit();
 
                                 return new List<Booking>();
+                                /* }
+                                 else
+                                 {
+                                     throw new Exception("Payment failed. Please try again.");
+                                 }*/
                             }
                             else
                             {
@@ -85,6 +93,68 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                 throw new Exception(ex.Message);
             }
         }
+
+        /*private bool ProcessPayment(object paymentInfo, int totalAmount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ProcessPayment(PaymentInfo paymentInfo)
+        {
+            try
+            {
+                switch (paymentInfo.PaymentMethod)
+                {
+                    case (int)PaymentMethod.bKash:
+                        if (!string.IsNullOrWhiteSpace(paymentInfo.bKashPhoneNumber))
+                        {
+                            Console.WriteLine($"Payment of {paymentInfo.Amount} {paymentInfo.Currency} via bKash is successful.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("bKash phone number is missing or invalid.");
+                            return false;
+                        }
+
+                    case (int)PaymentMethod.Nagad:
+                        if (!string.IsNullOrWhiteSpace(paymentInfo.NagadAccountNumber))
+                        {
+                            Console.WriteLine($"Payment of {paymentInfo.Amount} {paymentInfo.Currency} via Nagad is successful.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nagad account number is missing or invalid.");
+                            return false;
+                        }
+
+                    case (int)PaymentMethod.Card:
+                        if (!string.IsNullOrWhiteSpace(paymentInfo.CardNumber) &&
+                            !string.IsNullOrWhiteSpace(paymentInfo.CardHolderName) &&
+                            !string.IsNullOrWhiteSpace(paymentInfo.CardExpirationDate) &&
+                            !string.IsNullOrWhiteSpace(paymentInfo.CardCVV))
+                        {
+                            Console.WriteLine($"Payment of {paymentInfo.Amount} {paymentInfo.Currency} via Card is successful.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Card information is incomplete or invalid.");
+                            return false;
+                        }
+
+                    default:
+                        Console.WriteLine("Unsupported payment method.");
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error processing payment: " + ex.Message);
+                return false;
+            }
+        }*/
     }
 }
 

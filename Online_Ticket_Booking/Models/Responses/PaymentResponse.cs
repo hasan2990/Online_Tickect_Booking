@@ -3,6 +3,6 @@
     public class PaymentResponse
     {
         public bool isSuccess { get; set; } = false;
-        public string statusMessage { get; set; }
+        public string? statusMessage { get; set; }
     }
 }

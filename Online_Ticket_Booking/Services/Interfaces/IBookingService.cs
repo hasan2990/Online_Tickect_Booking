@@ -6,5 +6,7 @@ namespace Online_Ticket_Booking.Services.Interfaces
     public interface IBookingService
     {
         Task<BookingResponse> GetBookingsAsync(BookingQueryParameters queryParameters);
+
+        //Task<BookingResponse> GetBookingsAsync(BookingQueryParameters queryParameters, PaymentInfo paymentInfo);
     }
 }

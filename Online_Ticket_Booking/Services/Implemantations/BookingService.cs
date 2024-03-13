@@ -18,7 +18,7 @@ namespace Online_Ticket_Booking.Services.Implementations
         {
             BookingResponse response = new BookingResponse();
             response.isSuccess = true;
-            response.statusMessage = "Data Found";
+            response.statusMessage = "Data Found. The selected seat is already booked.";
             response.bookingList = await _bookingRepo.GetBookingRepoAsync(queryParameters);
 
             int amountToCharge = CalculateBookingAmount(response.bookingList.Count);

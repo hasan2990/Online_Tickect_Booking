@@ -6,5 +6,8 @@ namespace Online_Ticket_Booking.Repositories.Interfaces
     {
         Task<List<Booking>> GetBookingRepoAsync(BookingQueryParameters queryParameters);
         Task<List<Booking>> InsertBookingRepoAsync(BookingQueryParameters queryParameters);
+
+        /* Task<List<Booking>> GetBookingRepoAsync(BookingQueryParameters queryParameters, PaymentInfo paymentInfo);
+         Task<List<Booking>> InsertBookingRepoAsync(BookingQueryParameters queryParameters, PaymentInfo paymentInfo);*/
     }
 }
