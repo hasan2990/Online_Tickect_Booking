@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TXFykwGxx2DjmHGEFSyZCeU56Wo5M2qOIcHbHgW2tDJucl2tkJNZS5LMKwo2XRUE/Q+Jwb33wAkD3RjYIRs6wA==",
+  "dgSpecHash": "gODpikXDdqDqa8xwu0UF3uFMut/7LyWA/FLiq1uWmCwqT5FqkwgzztWw0dkV2HiTm+xfRNr50vomDnI3dgzW0w==",
   "success": true,
   "projectFilePath": "C:\\Users\\TN-99350\\source\\repos\\Online_Ticket_Booking\\Online_Ticket_Booking\\Online_Ticket_Booking.csproj",
   "expectedPackageFiles": [
@@ -148,6 +148,8 @@
     "C:\\Users\\TN-99350\\.nuget\\packages\\nuget.projectmodel\\6.3.1\\nuget.projectmodel.6.3.1.nupkg.sha512",
     "C:\\Users\\TN-99350\\.nuget\\packages\\nuget.protocol\\6.3.1\\nuget.protocol.6.3.1.nupkg.sha512",
     "C:\\Users\\TN-99350\\.nuget\\packages\\nuget.versioning\\6.3.1\\nuget.versioning.6.3.1.nupkg.sha512",
+    "C:\\Users\\TN-99350\\.nuget\\packages\\razorpay.core\\1.0.2\\razorpay.core.1.0.2.nupkg.sha512",
+    "C:\\Users\\TN-99350\\.nuget\\packages\\stripe.net\\43.18.0\\stripe.net.43.18.0.nupkg.sha512",
     "C:\\Users\\TN-99350\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\TN-99350\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\TN-99350\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

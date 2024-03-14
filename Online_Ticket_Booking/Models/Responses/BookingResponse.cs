@@ -2,8 +2,8 @@
 {
     public class BookingResponse
     {
-        public List<Booking> bookingList { get; set; }
         public bool isSuccess { get; set; }
-        public string statusMessage { get; set; }
+        public string? statusMessage { get; set; }
+        public List<Booking>? bookingList { get; set; }
     }
 }

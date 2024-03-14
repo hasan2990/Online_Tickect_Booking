@@ -22,10 +22,18 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                 using (var connection = _appDbContext.Connection())
                 {
                     string selectQuery = @"
-                        SELECT b.booking_id, b.user_id, b.route_id, b.bus_id, b.ending_time, b.seat_no, b.isBooked
-                        FROM Bookings b
+                        SELECT b.booking_id, b.user_id, b.route_id, b.bus_id, b.ending_time, b.seat_no, b.isBooked, b.isPaid, u.user_id, u.username, u.password, u.email, u.phone_number
+                        FROM Bookings b 
+                        JOIN Users u ON u.user_id = b.user_id
                         WHERE (b.bus_id = @bus_id AND b.seat_no = @seat_no AND b.isBooked = 1 AND b.user_id = @user_id AND b.route_id = @route_id);
                     ";
+                    /* string selectQuery = @"
+                        SELECT b.booking_id, b.user_id, b.route_id, b.bus_id, b.ending_time, b.seat_no, b.isBooked, u.user_id, u.username, u.email, u.phone_number
+                        FROM Bookings b 
+                        JOIN Users u ON u.user_id = b.user_id
+                        WHERE (b.bus_id = @bus_id AND b.seat_no = @seat_no AND b.isBooked = 1 AND b.user_id = @user_id AND b.route_id = @route_id AND b.isPaid = 1);
+                    ";*/
+
                     var result = await connection.QueryAsync<Booking>(selectQuery, queryParameters);
                     return result.ToList();
                 }
@@ -35,6 +43,8 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                 throw new Exception(ex.Message);
             }
         }
+
+
         public async Task<List<Booking>> InsertBookingRepoAsync(BookingQueryParameters queryParameters)
         {
             try
@@ -60,8 +70,8 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                                  if (paymentSuccessful)
                                  {*/
                                 string insertQuery = @"
-                                    INSERT INTO Bookings (user_id, route_id, bus_id, seat_no, isBooked)
-                                    VALUES (@user_id, @route_id, @bus_id, @seat_no, 1);
+                                    INSERT INTO Bookings (user_id, route_id, bus_id, ending_time, seat_no, isBooked, isPaid)
+                                    VALUES (@user_id, @route_id, @bus_id,Getdate(), @seat_no, 1,@isPaid);
                                 ";
 
                                 await connection.ExecuteAsync(insertQuery, queryParameters, transaction);

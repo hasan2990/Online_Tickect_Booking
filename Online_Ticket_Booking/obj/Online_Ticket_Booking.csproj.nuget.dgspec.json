@@ -74,6 +74,14 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+            "RazorPay.Core": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[43.18.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"

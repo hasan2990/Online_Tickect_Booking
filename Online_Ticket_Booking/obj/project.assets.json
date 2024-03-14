@@ -2494,6 +2494,35 @@
           }
         }
       },
+      "RazorPay.Core/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/RazorPay Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/RazorPay Core.dll": {}
+        }
+      },
+      "Stripe.net/43.18.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Stripe.net.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.4.0": {
         "type": "package",
         "dependencies": {
@@ -7506,6 +7535,43 @@
         "nuget.versioning.nuspec"
       ]
     },
+    "RazorPay.Core/1.0.2": {
+      "sha512": "vRyVsundeyWrQT7L4IyCHilcEwNpibm78vVp3HD3xpuFWhjlZ7wMxDOUdxcjgdeJWbXa52DSTG7OyH2LUuE0lA==",
+      "type": "package",
+      "path": "razorpay.core/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/netcoreapp3.1/RazorPay Core.dll",
+        "razorpay.core.1.0.2.nupkg.sha512",
+        "razorpay.core.nuspec"
+      ]
+    },
+    "Stripe.net/43.18.0": {
+      "sha512": "PI1je2UwLdu6RH/5hWFgEXjtHavJ7mX1KKmlWDLNDnmHId6qdlD/NuHMyFf9ngYibhRl49l52phxRbpR60Px1g==",
+      "type": "package",
+      "path": "stripe.net/43.18.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "icon.png",
+        "lib/net461/Stripe.net.dll",
+        "lib/net461/Stripe.net.xml",
+        "lib/net5.0/Stripe.net.dll",
+        "lib/net5.0/Stripe.net.xml",
+        "lib/net6.0/Stripe.net.dll",
+        "lib/net6.0/Stripe.net.xml",
+        "lib/netcoreapp3.1/Stripe.net.dll",
+        "lib/netcoreapp3.1/Stripe.net.xml",
+        "lib/netstandard2.0/Stripe.net.dll",
+        "lib/netstandard2.0/Stripe.net.xml",
+        "stripe.net.43.18.0.nupkg.sha512",
+        "stripe.net.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.4.0": {
       "sha512": "eUBr4TW0up6oKDA5Xwkul289uqSMgY0xGN4pnbOIBqCcN9VKGGaPvHX3vWaG/hvocfGDP+MGzMA0bBBKz2fkmQ==",
       "type": "package",
@@ -8969,6 +9035,8 @@
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.2",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.1",
       "Newtonsoft.Json >= 13.0.3",
+      "RazorPay.Core >= 1.0.2",
+      "Stripe.net >= 43.18.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -9044,6 +9112,14 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
+          },
+          "RazorPay.Core": {
+            "target": "Package",
+            "version": "[1.0.2, )"
+          },
+          "Stripe.net": {
+            "target": "Package",
+            "version": "[43.18.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

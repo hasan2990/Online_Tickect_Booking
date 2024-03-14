@@ -16,6 +16,8 @@
           "Microsoft.EntityFrameworkCore.Tools": "8.0.2",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.1",
           "Newtonsoft.Json": "13.0.3",
+          "RazorPay.Core": "1.0.2",
+          "Stripe.net": "43.18.0",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
@@ -1759,6 +1761,29 @@
           }
         }
       },
+      "RazorPay.Core/1.0.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/RazorPay Core.dll": {
+            "assemblyVersion": "1.0.0.2",
+            "fileVersion": "1.0.0.2"
+          }
+        }
+      },
+      "Stripe.net/43.18.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3",
+          "System.Configuration.ConfigurationManager": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "assemblyVersion": "43.18.0.0",
+            "fileVersion": "43.18.0.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.4.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -3077,6 +3102,20 @@
       "sha512": "sha512-T/igBDLXCd+pH3YTWgGVNvYSOwbwaT30NyyM9ONjvlHlmaUjKBJpr9kH0AeL+Ado4EJsBhU3qxXVc6lyrpRcMw==",
       "path": "nuget.versioning/6.3.1",
       "hashPath": "nuget.versioning.6.3.1.nupkg.sha512"
+    },
+    "RazorPay.Core/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vRyVsundeyWrQT7L4IyCHilcEwNpibm78vVp3HD3xpuFWhjlZ7wMxDOUdxcjgdeJWbXa52DSTG7OyH2LUuE0lA==",
+      "path": "razorpay.core/1.0.2",
+      "hashPath": "razorpay.core.1.0.2.nupkg.sha512"
+    },
+    "Stripe.net/43.18.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PI1je2UwLdu6RH/5hWFgEXjtHavJ7mX1KKmlWDLNDnmHId6qdlD/NuHMyFf9ngYibhRl49l52phxRbpR60Px1g==",
+      "path": "stripe.net/43.18.0",
+      "hashPath": "stripe.net.43.18.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.4.0": {
       "type": "package",
