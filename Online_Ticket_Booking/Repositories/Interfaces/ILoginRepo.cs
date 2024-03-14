@@ -6,6 +6,5 @@ namespace Online_Ticket_Booking.Repositories.Interfaces
     {
         Task<bool> CheckEmailExists(string email);
         Task<string> LoginUser(string email, string password);
-       
     }
 }

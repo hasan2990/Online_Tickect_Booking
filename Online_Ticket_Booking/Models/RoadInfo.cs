@@ -4,13 +4,11 @@ namespace Online_Ticket_Booking.Models
 {
     public class RoadInfo
     {
-        public int route_id { get; set; }
-
         [Required(ErrorMessage = "Source is required")]
-        public string? source { get; set; }
+        public int source_id { get; set; }
 
         [Required(ErrorMessage = "Destination is required")]
-        public string? destination { get; set; }
+        public int destination_id { get; set; }
 
         public decimal distance { get; set; }
 

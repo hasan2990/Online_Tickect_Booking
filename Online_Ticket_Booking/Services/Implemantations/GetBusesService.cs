@@ -14,7 +14,7 @@ namespace Online_Ticket_Booking.Services.Implemantations
         }
 
 
-       public async Task<SelectedBusesResponse> ServiceGetBuses(SearchBusesInfo use)
+        public async Task<SelectedBusesResponse> ServiceGetBuses(SearchBusesInfo use)
         {
             SelectedBusesResponse response = new SelectedBusesResponse();
             response.ServiceGetBuses = await _getBusesRepo.GetBusesUser(use);

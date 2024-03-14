@@ -5,7 +5,7 @@ using Online_Ticket_Booking.Repositories.Interfaces;
 
 namespace Online_Ticket_Booking.Repositories.Implemantations
 {
-    public class BusRepo:IBusRepo
+    public class BusRepo : IBusRepo
     {
         private readonly AppDbContext _appDbContext;
         public BusRepo(AppDbContext appDbContext)

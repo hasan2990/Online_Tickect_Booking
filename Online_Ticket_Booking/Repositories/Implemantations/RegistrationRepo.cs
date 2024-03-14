@@ -5,7 +5,7 @@ using Online_Ticket_Booking.Repositories.Interfaces;
 
 namespace Online_Ticket_Booking.Repositories.Implemantations
 {
-    public class RegistrationRepo:IRegistrationRepo
+    public class RegistrationRepo : IRegistrationRepo
     {
         private readonly AppDbContext _appDbContext;
         private readonly ILogger<RegistrationRepo> _logger;
@@ -19,7 +19,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
         public async Task<string> RegisterUser(User registration)
         {
             _logger.LogInformation("RegisterUser Method Calling in Repository Layer");
-            
+
             string query = @"INSERT INTO Users (username, password, email, IsActive,phone_number) VALUES (@username, @password, @email, @IsActive, @phone_number)";
 
             int rowsAffected = 0;

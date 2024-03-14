@@ -2,8 +2,8 @@
 {
     public class SearchBusesInfo
     {
-        public string? source { get; set; }
-        public string? destination { get; set; }
+        public int source_id { get; set; }
+        public int destination_id { get; set; }
         // public DateTime journey_date { get; set; }
     }
 }

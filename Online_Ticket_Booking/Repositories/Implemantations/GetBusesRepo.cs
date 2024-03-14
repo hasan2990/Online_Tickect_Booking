@@ -24,12 +24,17 @@ namespace Online_Ticket_Booking.Repositories.Implementations
                 try
                 {
                     string query = @"
-                    SELECT b.bus_id, b.bus_name, b.capacity, b.seatCount, r.route_id, r.source, r.destination, r.duration, p.price
+                    SELECT 
+                        b.bus_id, b.bus_name, b.capacity, b.seatCount, r.route_id, r.source_id,
+	                    r.destination_id, re.region_name as source,
+	                    ree.region_name as destination, r.duration, p.price
                     FROM Buses b
-                    JOIN Price p ON b.bus_id = p.bus_id
-                    JOIN Routes r ON r.route_id = p.route_id
-                    WHERE r.source = @source AND r.destination = @destination;
-                   
+                        JOIN Price p ON b.bus_id = p.bus_id
+                        JOIN Routes r ON r.route_id = p.route_id
+                        JOIN region re on r.source_id = re.id
+	                    JOIN region ree on r.destination_id = ree.id
+
+                    WHERE r.source_id = @source_id AND r.destination_id = @destination_id;
                     ";
 
                     List<PriceInfo> selectedBusesModelList = new List<PriceInfo>();
