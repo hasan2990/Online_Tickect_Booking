@@ -1,17 +1,21 @@
 ﻿using Online_Ticket_Booking.Models;
 using Online_Ticket_Booking.Models.Responses;
 using Online_Ticket_Booking.Repositories.Interfaces;
+using Online_Ticket_Booking.Services.Implemantations;
 using Online_Ticket_Booking.Services.Interfaces;
+using System.Text.Json;
 
 namespace Online_Ticket_Booking.Services.Implementations
 {
     public class BookingService : IBookingService
     {
         private readonly IBookingRepo _bookingRepo;
+        private readonly ILogService _ilogService;
 
-        public BookingService(IBookingRepo bookingRepo)
+        public BookingService(IBookingRepo bookingRepo, ILogService ilogService)
         {
             _bookingRepo = bookingRepo;
+            _ilogService = ilogService;
         }
 
         public async Task<BookingResponse> GetBookingsAsync(BookingQueryParameters queryParameters)
@@ -30,6 +34,14 @@ namespace Online_Ticket_Booking.Services.Implementations
 
                 await _bookingRepo.InsertBookingRepoAsync(queryParameters);
                 response.bookingList = await _bookingRepo.GetBookingRepoAsync(queryParameters);
+                var log = new Log
+                {
+                    ActionDate = DateTime.UtcNow,
+                    ActionChanges = "Booking " + queryParameters + "Successful",
+                    JsonPayload = JsonSerializer.Serialize(queryParameters),
+                    IsActive = true,
+                };
+                var logmsg = await _ilogService.CreateLog(log);
                 response.statusMessage = "Data Inserted";
             }
             return response;

@@ -48,6 +48,8 @@ builder.Services.AddTransient<IGetBusesRepo, GetBusesRepo>();
 builder.Services.AddTransient<IGetBusesService, GetBusesService>();
 builder.Services.AddTransient<IBookingRepo, BookingRepo>();
 builder.Services.AddTransient<IBookingService, BookingService>();
+builder.Services.AddTransient<ILogRepo, LogRepo>();
+builder.Services.AddTransient<ILogService, LogService>();
 builder.Services.AddTransient<AppDbContext>();
 
 var app = builder.Build();

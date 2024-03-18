@@ -26,7 +26,7 @@ namespace Online_Ticket_Booking.Services.Implementations
         public async Task<ResponseModel> ServiceRegisterUser(User registration)
         {
             _logger.LogInformation("ServiceRegisterUser Method Calling in Service Layer");
-            
+
             ResponseModel response = new ResponseModel();
 
             if (!Regex.IsMatch(registration.email, EmailRegex))
