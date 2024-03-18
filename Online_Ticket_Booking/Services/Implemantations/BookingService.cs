@@ -36,7 +36,7 @@ namespace Online_Ticket_Booking.Services.Implementations
                 response.bookingList = await _bookingRepo.GetBookingRepoAsync(queryParameters);
                 var log = new Log
                 {
-                    ActionDate = DateTime.UtcNow,
+                    ActionDate = DateTime.Now,
                     ActionChanges = "Booking " + queryParameters + "Successful",
                     JsonPayload = JsonSerializer.Serialize(queryParameters),
                     IsActive = true,

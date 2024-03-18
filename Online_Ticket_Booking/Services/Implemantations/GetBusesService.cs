@@ -27,7 +27,7 @@ namespace Online_Ticket_Booking.Services.Implemantations
             {
                 var log = new Log
                 {
-                    ActionDate = DateTime.UtcNow,
+                    ActionDate = DateTime.Now,
                     ActionChanges = "GetAllBuses " + use + "Successful",
                     JsonPayload = JsonSerializer.Serialize(use),
                     IsActive = true,

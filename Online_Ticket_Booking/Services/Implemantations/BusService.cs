@@ -23,7 +23,7 @@ namespace Online_Ticket_Booking.Services.Implemantations
             ResponseModel response = new ResponseModel();
             var log = new Log
             {
-                ActionDate = DateTime.UtcNow,
+                ActionDate = DateTime.Now,
                 ActionChanges = "Add New Bus " + use + "Successful",
                 JsonPayload = JsonSerializer.Serialize(use),
                 IsActive = true,
