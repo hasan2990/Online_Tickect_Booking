@@ -4,7 +4,7 @@ namespace Online_Ticket_Booking.Models.Authentication
 {
     public class User
     {
-        public int user_id { get; set; }
+        //public int user_id { get; set; }
 
         [Required(ErrorMessage = "UserName is required")]
         public string? username { get; set; }

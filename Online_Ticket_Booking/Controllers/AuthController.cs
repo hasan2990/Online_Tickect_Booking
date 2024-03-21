@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+
 using Newtonsoft.Json;
-using NuGet.Common;
 using Online_Ticket_Booking.Models.Authentication;
 using Online_Ticket_Booking.Models.Responses;
 using Online_Ticket_Booking.Services.Interfaces;
@@ -35,7 +34,7 @@ namespace Online_Ticket_Booking.Controllers
             _logger.LogInformation($"Registration API Calling in Controller...{JsonConvert.SerializeObject(registration)}");
             try
             {
-                return Ok(await _iRegistrationService.ServiceRegisterUser(registration));             
+                return Ok(await _iRegistrationService.ServiceRegisterUser(registration));
             }
             catch (Exception ex)
             {
@@ -43,7 +42,6 @@ namespace Online_Ticket_Booking.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
         [HttpPost]
         [Route("api/login")]
         public async Task<IActionResult> Login(Login login)
@@ -58,7 +56,6 @@ namespace Online_Ticket_Booking.Controllers
             var token = await _iLoginService.ServiceLoginUser(login.email, login.password);
             return Ok(token);
         }
-
         [HttpGet]
         [Authorize]
         [Route("Authorization")]

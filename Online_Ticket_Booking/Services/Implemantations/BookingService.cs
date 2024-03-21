@@ -11,7 +11,6 @@ namespace Online_Ticket_Booking.Services.Implementations
     {
         private readonly IBookingRepo _bookingRepo;
         private readonly ILogService _ilogService;
-
         public BookingService(IBookingRepo bookingRepo, ILogService ilogService)
         {
             _bookingRepo = bookingRepo;

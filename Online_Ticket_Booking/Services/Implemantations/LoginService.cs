@@ -41,7 +41,7 @@ namespace Online_Ticket_Booking.Services.Implemantations
                 var log = new Log
                 {
                     ActionDate = DateTime.Now,
-                    ActionChanges = "User Login" + email + "Successful",
+                    ActionChanges = "User Login " + email + "Successful",
                     JsonPayload = JsonSerializer.Serialize(email),
                     IsActive = true,
                 };
