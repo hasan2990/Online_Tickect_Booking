@@ -18,7 +18,7 @@ namespace Online_Ticket_Booking.Services.Implementations
 
         public readonly string EmailRegex = @"^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$";
         public readonly string PasswordRegex = @"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,10}$";
-        public readonly string MobileRegex = @"([1-9]{1}[0-9]{9})$";
+        public readonly string MobileRegex = @"^(?:\+?88|01)?(?:\d{11})$";
 
         public RegistrationService(IRegistrationRepo iRegistrationRepo, ILogger<RegistrationService> logger)
         {
@@ -42,7 +42,7 @@ namespace Online_Ticket_Booking.Services.Implementations
             if (!Regex.IsMatch(registration.password, PasswordRegex))
             {
                 response.isSuccess = false;
-                response.statusMessage = "Password Current Format Ex: StrongP4ssword";
+                response.statusMessage = "Password Current Format Ex: StrongP4ssword@";
                 return response;
             }
 
