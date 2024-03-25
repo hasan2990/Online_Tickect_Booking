@@ -1,12 +1,12 @@
 ﻿using Online_Ticket_Booking.Repositories.Interfaces;
 using Dapper;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Online_Ticket_Booking.Models.Authentication;
 using Online_Ticket_Booking.Models.Data;
+using Online_Ticket_Booking.Models.Responses;
 namespace Online_Ticket_Booking.Repositories.Implemantations
 {
     public class LoginRepo : ILoginRepo
@@ -29,23 +29,37 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             }
         }
 
-        public async Task<string> LoginUser(string email, string password)
+        public async Task<LoginResponse> LoginUser(Login login)
         {
+            LoginResponse response = new LoginResponse();
             using (var connection = this._appDbContext.Connection())
             {
-                var user = await connection.QueryFirstOrDefaultAsync<Login>("SELECT * FROM Users WHERE email = @email AND password = @password AND IsActive = 1",
-                                                            new { Email = email, Password = password });
-                if (user != null)
+                var qr = await connection.QueryFirstOrDefaultAsync<User>("SELECT * FROM Users WHERE email = @Email AND password = @Password AND IsActive = 1",
+                                                            new { Email = login.email, Password = login.password });
+                if (qr != null)
                 {
-                    return GenerateToken(user.email);
+                    response.username = qr.username;
+                    response.email = qr.email;
+                    response.password = qr.password;
+                    response.phone_number = qr.phone_number;
+                    if (qr.email != null)
+                    {
+                        response.token = GenerateToken(qr.email);
+                    }
+                    else
+                    {
+                        response.statusMessage = "Invalid credentials.";
+                    }
                 }
                 else
                 {
-                    return "";
+                    response.isSuccess = false;
+                    response.statusMessage = "User not found or invalid credentials.";
                 }
+
+                return response;
             }
         }
-
 
 
         private string GenerateToken(string email)
@@ -67,7 +81,6 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-
     }
+
 }

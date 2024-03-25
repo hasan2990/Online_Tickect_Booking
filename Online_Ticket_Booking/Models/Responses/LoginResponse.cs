@@ -7,5 +7,9 @@ namespace Online_Ticket_Booking.Models.Responses
         public string? statusMessage { get; set; }
         public string? token { get; set; }
         //public string refreshToken { get; set; }
+        public string? username { get; set; }
+        public string? email { get; set; }
+        public string? password { get; set; }
+        public string? phone_number { get; set; }
     }
 }

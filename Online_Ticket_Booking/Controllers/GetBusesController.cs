@@ -35,7 +35,7 @@ namespace Online_Ticket_Booking.Controllers
             }
         }*/
 
-        [HttpGet]
+        [HttpPost]
         [Route("GetBusDetails")]
         public async Task<IActionResult> GetBusDetails(int source_id, int destination_id)
         {

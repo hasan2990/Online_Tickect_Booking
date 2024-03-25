@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.ComponentModel.DataAnnotations;
-using Online_Ticket_Booking.Models.Authentication;
+﻿using Online_Ticket_Booking.Models.Authentication;
 
 namespace Online_Ticket_Booking.Models
 {
@@ -8,7 +6,7 @@ namespace Online_Ticket_Booking.Models
     {
         public int? booking_id { get; set; }
 
-        public new int? user_id { get; set; }
+        public int? user_id { get; set; }
 
         public int? route_id { get; set; }
 

@@ -18,7 +18,7 @@ namespace Online_Ticket_Booking.Controllers
         private readonly ILogger<AuthController> _logger;
 
         public AuthController(
-            ILoginService iLoginService, 
+            ILoginService iLoginService,
             IRegistrationService iRegistrationService,
             ILogger<AuthController> logger)
         {
@@ -53,8 +53,8 @@ namespace Online_Ticket_Booking.Controllers
                 return BadRequest("Invalid Email Id.");
             }
 
-            var token = await _iLoginService.ServiceLoginUser(login.email, login.password);
-            return Ok(token);
+            LoginResponse res = await _iLoginService.ServiceLoginUser(login);
+            return Ok(res);
         }
         [HttpGet]
         [Authorize]

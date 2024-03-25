@@ -1,15 +1,8 @@
-﻿using Azure.Core;
-using Microsoft.IdentityModel.Tokens;
-using NuGet.Common;
-using Online_Ticket_Booking.Models;
+﻿using Online_Ticket_Booking.Models;
 using Online_Ticket_Booking.Models.Authentication;
 using Online_Ticket_Booking.Models.Responses;
-using Online_Ticket_Booking.Repositories.Implemantations;
 using Online_Ticket_Booking.Repositories.Interfaces;
 using Online_Ticket_Booking.Services.Interfaces;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using System.Text.Json;
 
 
@@ -29,20 +22,17 @@ namespace Online_Ticket_Booking.Services.Implemantations
         {
             return await _iLoginRepo.CheckEmailExists(email);
         }
-
-        public async Task<LoginResponse> ServiceLoginUser(string email, string password)
+        public async Task<LoginResponse> ServiceLoginUser(Login login)
         {
             LoginResponse response = new LoginResponse();
-
-            var token = await _iLoginRepo.LoginUser(email, password);
-
-            if (!string.IsNullOrEmpty(token))
+            LoginResponse res = await _iLoginRepo.LoginUser(login);
+            if (res.token != null)
             {
                 var log = new Log
                 {
                     ActionDate = DateTime.Now,
-                    ActionChanges = "User Login " + email + "Successful",
-                    JsonPayload = JsonSerializer.Serialize(email),
+                    ActionChanges = "User Login " + login.email + "Successful",
+                    JsonPayload = JsonSerializer.Serialize(login.email),
                     IsActive = true,
                 };
 
@@ -50,12 +40,21 @@ namespace Online_Ticket_Booking.Services.Implemantations
 
                 response.isSuccess = true;
                 response.statusMessage = "Token generated successfully.";
-                response.token = token;
+                response.token = res.token;
+                response.email = res.email;
+                response.password = res.password;
+                response.username = res.username;
+                response.phone_number = res.phone_number;
+
             }
             else
             {
                 response.isSuccess = false;
                 response.statusMessage = "Login failed.";
+                response.email = res.email;
+                response.password = res.password;
+                response.username = res.username;
+                response.phone_number = res.phone_number;
             }
 
             return response;
