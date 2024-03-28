@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Online_Ticket_Booking.Models;
 using Online_Ticket_Booking.Services.Implemantations;
@@ -34,8 +35,8 @@ namespace Online_Ticket_Booking.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }*/
-
-        [HttpPost]
+        [Authorize]
+        [HttpGet]
         [Route("GetBusDetails")]
         public async Task<IActionResult> GetBusDetails(int source_id, int destination_id)
         {

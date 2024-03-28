@@ -45,6 +45,7 @@ namespace Online_Ticket_Booking.Services.Implemantations
                 response.password = res.password;
                 response.username = res.username;
                 response.phone_number = res.phone_number;
+                response.user_id = res.user_id;
 
             }
             else

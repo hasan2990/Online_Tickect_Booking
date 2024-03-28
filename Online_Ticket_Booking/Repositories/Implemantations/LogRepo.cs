@@ -36,7 +36,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                throw new CustomizedException("Someting Went wrong. Please Contact with Admin", 400);
+                throw new Exception("Someting Went wrong. Please Contact with Admin");
             }
         }
     }

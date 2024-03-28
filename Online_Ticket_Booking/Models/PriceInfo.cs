@@ -9,7 +9,7 @@
         public int seatCount { get; set; }
         public string? source { get; set; }
         public string? destination { get; set; }
-        public string? price { get; set; }
+        public decimal? price { get; set; }
 
 
     }

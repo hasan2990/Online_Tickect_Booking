@@ -38,6 +38,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                                                             new { Email = login.email, Password = login.password });
                 if (qr != null)
                 {
+                    response.user_id = qr.user_id;
                     response.username = qr.username;
                     response.email = qr.email;
                     response.password = qr.password;
