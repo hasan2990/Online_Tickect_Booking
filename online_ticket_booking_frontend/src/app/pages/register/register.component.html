@@ -1,0 +1,66 @@
+<div class="parent">
+    <div class="container" >
+        <div class="registration-box">
+            <h2>Registration</h2>
+            <form action="#">
+                <div class="input-box">
+                    <input type="username" [(ngModel)]="RegisterObj.username" name="username" required>
+                    <label>Username</label>
+                </div>
+
+                
+                <div class="input-box">
+                    <input id="email" required pattern="^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$"
+                    name="email"#email="ngModel"[(ngModel)]="RegisterObj.email">
+                    <label>Email</label>
+                     <span class="help-block" *ngIf="email.errors?.['required'] && email.touched">
+                        Email_is_required
+                    </span>
+                        
+                    <span class="help-block" *ngIf="email.errors?.['pattern'] && email.touched">
+                        Email_is_invalid
+                    </span>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,10}$"
+                           name="password" #password="ngModel" [(ngModel)]="RegisterObj.password">
+                    <label>Password</label>
+                    <span class="help-block" *ngIf="password.errors?.['required'] && password.touched">
+                        Password_is_required
+                    </span>
+                    <span class="help-block" *ngIf="password.errors?.['pattern'] && password.touched">
+                        Password_is_invalid
+                    </span>
+                </div>
+
+                <div class="input-box">
+                    <input id="isActive"
+                    name="isActive"#isActive="ngModel"[(ngModel)]="RegisterObj.isActive">
+                    <label>isActive</label>
+                </div>
+
+                <div class="input-box">
+                    <input id="phone_number" required pattern="^(?:\+?88|01)?(?:\d{11})$"
+                    name="phone_number"#phone_number="ngModel"[(ngModel)]="RegisterObj.phone_number">
+                    
+                    <label>phone_number</label>
+                    <span class="help-block" *ngIf="phone_number.errors?.['required'] && phone_number.touched">
+                        Phone_number_is_required
+                    </span>
+                        
+                    <span class="help-block" *ngIf="phone_number.errors?.['pattern'] && phone_number.touched">
+                        Phone_number_is_invalid
+                    </span>
+                </div>
+
+                <div class="button">
+                    <button type="button" class="btn" (click)="onRegistration()" >Registration</button>
+                    <button type="button" class="btn" (click)="onLog()" >Login</button>
+                </div>
+                 
+            </form>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="parent">
+    <div class="userbusinfo">
+        <h2>GetBuses</h2>
+        <form action="#" class="search-form">
+            <div class="input-box">
+                <label for="source_id">Source</label>
+                <select id="source_id" [(ngModel)]="source_id" name="source_id" required>
+                    <option *ngFor="let region of regioninfo" [value]="region.id">{{ region.region_name }}</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label for="destination_id">Destination</label>
+                <select id="destination_id" [(ngModel)]="destination_id" name="destination_id" required>
+                    <option *ngFor="let region of regioninfo" [value]="region.id">{{ region.region_name }}</option>
+                </select>
+            </div>
+            <div class="button">
+                <button type="button" class="btn" (click)="onSearchOption()">Search</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="bus-list" *ngIf="businfo.length > 0">
+        <h3>Buses Available:</h3>
+        <div class="buses-container">
+            <div *ngFor="let bus of businfo" class="bus-item" >
+                <h4>{{ bus.bus_name }}</h4>
+                <p>Route ID: {{ bus.route_id }}</p>
+                <p>Capacity: {{ bus.capacity }}</p>
+                <p>Seat Count: {{ bus.seatCount }}</p>
+                <p>Source: {{ bus.source }}</p>
+                <p>Destination: {{ bus.destination }}</p>
+                <p>Price: {{ bus.price }}</p>
+            </div>
+        </div>
+    </div>
+</div>
