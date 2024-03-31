@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\TN-99350\\source\\repos\\Online_Ticket_Booking\\Online_Ticket_Booking\\Online_Ticket_Booking.csproj": {}
+    "D:\\Hasan\\Online_Ticket_Booking\\Online_Ticket_Booking\\Online_Ticket_Booking.csproj": {}
   },
   "projects": {
-    "C:\\Users\\TN-99350\\source\\repos\\Online_Ticket_Booking\\Online_Ticket_Booking\\Online_Ticket_Booking.csproj": {
+    "D:\\Hasan\\Online_Ticket_Booking\\Online_Ticket_Booking\\Online_Ticket_Booking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\TN-99350\\source\\repos\\Online_Ticket_Booking\\Online_Ticket_Booking\\Online_Ticket_Booking.csproj",
+        "projectUniqueName": "D:\\Hasan\\Online_Ticket_Booking\\Online_Ticket_Booking\\Online_Ticket_Booking.csproj",
         "projectName": "Online_Ticket_Booking",
-        "projectPath": "C:\\Users\\TN-99350\\source\\repos\\Online_Ticket_Booking\\Online_Ticket_Booking\\Online_Ticket_Booking.csproj",
+        "projectPath": "D:\\Hasan\\Online_Ticket_Booking\\Online_Ticket_Booking\\Online_Ticket_Booking.csproj",
         "packagesPath": "C:\\Users\\TN-99350\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\TN-99350\\source\\repos\\Online_Ticket_Booking\\Online_Ticket_Booking\\obj\\",
+        "outputPath": "D:\\Hasan\\Online_Ticket_Booking\\Online_Ticket_Booking\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\TN-99350\\AppData\\Roaming\\NuGet\\NuGet.Config",

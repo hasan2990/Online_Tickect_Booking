@@ -1,0 +1,54 @@
+<div class="parent">
+    <div class="bookinginfo">
+        <h2>Booking</h2>
+        <form action="#" class="search-form">
+            <div class="input-box">
+                <label for="bus_id">bus_id</label>
+                <input type="number" id="bus_id" [(ngModel)]="bus_id" name="bus_id" required>
+            </div>
+            <div class="input-box">
+                <label for="seat_no">seat_no</label>
+                <input type="text"  id="seat_no" [(ngModel)]="seat_no" name="seat_no" required>
+                
+            </div>
+            <div class="input-box">
+                <label for="user_id">user_id</label>
+                <input type="number"  id="user_id" [(ngModel)]="user_id" name="user_id" required>
+            </div>
+            <div class="input-box">
+                <label for="route_id">route_id</label>
+                <input type="number"  id="route_id" [(ngModel)]="route_id" name="route_id" required>
+            </div>
+            <div class="input-box">
+                <label for="isPaid">isPaid</label>
+                <input type="checkbox" id="isPaid" [(ngModel)]="isPaid" name="isPaid" required>
+            </div>
+            
+            <div class="button">
+                <button type="button" class="btn" (click)="onSearchOption()">Search</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="bus-list" *ngIf="bookinginfo.length > 0">
+        <h3>Booking:</h3>
+        <div class="buses-container">
+            <div *ngFor="let b of bookinginfo" class="bus-item">
+
+                <h4 style="text-align: center;">{{ bus_name }}</h4>
+                <p>booking_id: {{ b.booking_id }}</p>
+                <p>bus_id: {{ b.bus_id }}</p>
+                <p>seat_no: {{ b.seat_no }}</p>
+                <p>user_id: {{ b.user_id }}</p>
+                <p>Route ID: {{ b.route_id }}</p>
+                <p>isPaid: {{ b.isPaid }}</p>
+                <p>userName: {{ b.username}}</p>
+                <p>email: {{ b.email}}</p>
+                <p>phone_number: {{ b.phone_number}}</p>
+                <p>isBooked: {{ b.isBooked }}</p>
+                <p>ending_time: {{ b.ending_time }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+

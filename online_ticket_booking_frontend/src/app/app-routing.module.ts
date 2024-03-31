@@ -5,6 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserbusinfoComponent } from './pages/userbusinfo/userbusinfo.component';
 import { LayoutComponent } from './pages/layout/layout.component';
+import { BookingComponent } from './pages/booking/booking.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
   {
     path: 'layout',
     component: LayoutComponent
+  },
+  {
+    path: 'booking',
+    component: BookingComponent
   }
 
 ];

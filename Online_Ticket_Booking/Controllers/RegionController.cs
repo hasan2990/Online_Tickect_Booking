@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Online_Ticket_Booking.Services.Interfaces;
+using System;
 
 namespace Online_Ticket_Booking.Controllers
 {
@@ -20,6 +21,7 @@ namespace Online_Ticket_Booking.Controllers
         public async Task<IActionResult> GetAllRegions()
         {
             var regions = await _regionService.GetAllRegionsAsync();
+            Console.Out.WriteLine(regions);
             return Ok(regions);
         }
     }

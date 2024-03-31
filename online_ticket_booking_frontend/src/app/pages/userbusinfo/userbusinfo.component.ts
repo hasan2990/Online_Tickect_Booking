@@ -58,11 +58,16 @@ export class UserbusinfoComponent implements OnInit {
         }
       });
     }
+    else {
+      alert("Give Source and Destination.");
+    }
   }
   onSearchRegion(){
     if(this.flag) {
       this.auth.getRegions().subscribe(response => {
         console.log("OnSearchRegion");
+        console.log(response);
+        
         if(response.isSuccess) {
           //alert("Regions are available");
           console.log(response);
@@ -75,6 +80,24 @@ export class UserbusinfoComponent implements OnInit {
           }
         }
       });
+    }else {
+      alert("Login First")
+      this.router.navigate(['/login']);
     }
   }
+
+  onOption(bus: any) {
+    if (this.flag) {
+      alert("Booking Option");
+      console.log("Selected bus:");
+      console.log(bus);
+  
+      localStorage.setItem('selectedBus', JSON.stringify(bus));
+      this.router.navigate(['/booking']);
+    } else {
+      alert("Login First");
+      this.router.navigate(['/login']);
+    }
+  }
+  
 }

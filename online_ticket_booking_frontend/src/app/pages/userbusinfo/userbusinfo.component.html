@@ -23,7 +23,7 @@
     <div class="bus-list" *ngIf="businfo.length > 0">
         <h3>Buses Available:</h3>
         <div class="buses-container">
-            <div *ngFor="let bus of businfo" class="bus-item" >
+            <div *ngFor="let bus of businfo" class="bus-item" (click)="onOption(bus)">
                 <h4>{{ bus.bus_name }}</h4>
                 <p>Route ID: {{ bus.route_id }}</p>
                 <p>Capacity: {{ bus.capacity }}</p>

@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Login} from '../login/login.component';
 import { Register } from '../register/register.component';
-import { map } from 'rxjs/operators';
-import { PriceInfo, SelectedBusesResponse } from '../Models/SelectedBusesResponse.model';
+import { SelectedBusesResponse } from '../Models/SelectedBusesResponse.model';
 import { RegionResponse } from '../Models/RegionResponse.model';
+import { BookingResponse } from '../Models/BookingResponse.model';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,10 @@ export class AuthService {
   baseApiUrl = 'https://localhost:44320/api';
 
   LoginUser(loginObj : Login) : Observable<Login>{
-      return this.http.post<Login>(this.baseApiUrl + '/login', loginObj);
+      return this.http.post<Login>(this.baseApiUrl + `/login`, loginObj);
   }
   RegisterUser(RegisterObj : Register) : Observable<Register>{
-    return this.http.post<Register>(this.baseApiUrl + '/registration', RegisterObj);
+    return this.http.post<Register>(this.baseApiUrl + `/registration`, RegisterObj);
   }
 
   getBusesById(source_id: number, destination_id: number): Observable<SelectedBusesResponse> {
@@ -28,6 +29,13 @@ export class AuthService {
   }
 
   getRegions(): Observable<RegionResponse>{
+    console.log("GetRegions", this.baseApiUrl);
     return this.http.get<any>(`${this.baseApiUrl}/Region/GetRegionDetails`);
   }
+
+  onBooking(bus_id: number, seat_no: string, user_id: number, route_id: number, isPaid: boolean): Observable<BookingResponse> {
+    console.log('onBooking', bus_id, seat_no,user_id,route_id,isPaid);
+    return this.http.get<any>(`${this.baseApiUrl}/Booking?bus_id=${bus_id}&seat_no=${seat_no}&user_id=${user_id}&route_id=${route_id}&isPaid=${isPaid}`);
+  }
+  
 }

@@ -6,7 +6,7 @@ namespace Online_Ticket_Booking.Models
     {
         public int? booking_id { get; set; }
 
-        public int? user_id { get; set; }
+        public new int? user_id { get; set; }
 
         public int? route_id { get; set; }
 

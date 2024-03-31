@@ -14,12 +14,14 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app-routing.module'
 import { customInterceptor } from './pages/service/custom.interceptor';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { BookingComponent } from './pages/booking/booking.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     AppComponent,
     UserbusinfoComponent,
+    BookingComponent,
 
     
   ],
