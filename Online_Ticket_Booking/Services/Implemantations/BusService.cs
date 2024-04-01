@@ -28,9 +28,18 @@ namespace Online_Ticket_Booking.Services.Implemantations
                 JsonPayload = JsonSerializer.Serialize(use),
                 IsActive = true,
             };
-            var logmsg =  await _ilogService.CreateLog(log);
-            response.isSuccess = true;
-            response.statusMessage = await _busRepo.BusUser(use);
+            var logmsg = await _ilogService.CreateLog(log);
+            var tmp = await _busRepo.BusUser(use);
+            if (tmp > 0)
+            {
+                response.isSuccess = true;
+                response.statusMessage = "Bus details are added to the database";
+            }
+            else
+            {
+                response.isSuccess = false;
+                response.statusMessage = "Error";
+            }
             return response;
         }
     }

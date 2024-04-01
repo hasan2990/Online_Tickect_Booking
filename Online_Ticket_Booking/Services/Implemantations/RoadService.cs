@@ -14,24 +14,33 @@ namespace Online_Ticket_Booking.Services.Implemantations
         public RoadService(IRoadRepo roadRepo, ILogService ilogService)
         {
             _roadRepo = roadRepo;
-            _ilogService = ilogService; 
+            _ilogService = ilogService;
         }
 
         public async Task<ResponseModel> ServiceRoadUser(RoadInfo use)
         {
             ResponseModel response = new ResponseModel();
 
-            response.isSuccess = true;
-            response.statusMessage = await _roadRepo.RoadUser(use);
-
-            var log = new Log
+            var tmp = await _roadRepo.RoadUser(use);
+            if (tmp > 0)
             {
-                ActionDate = DateTime.Now,
-                ActionChanges = "Roadadded " + use + "Successful",
-                JsonPayload = JsonSerializer.Serialize(use),
-                IsActive = true,
-            };
-            var logmsg = await _ilogService.CreateLog(log);
+                response.isSuccess = true;
+                response.statusMessage = "Route details are added to the database";
+
+                var log = new Log
+                {
+                    ActionDate = DateTime.Now,
+                    ActionChanges = "Roadadded " + use + "Successful",
+                    JsonPayload = JsonSerializer.Serialize(use),
+                    IsActive = true,
+                };
+                var logmsg = await _ilogService.CreateLog(log);
+            }
+            else
+            {
+                response.isSuccess = false;
+                response.statusMessage = "Error";
+            }
 
             return response;
         }

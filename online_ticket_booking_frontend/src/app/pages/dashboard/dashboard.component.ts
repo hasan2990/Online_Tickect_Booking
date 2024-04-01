@@ -19,7 +19,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     const token = localStorage.getItem('angular17token');
     if (token) {
+      console.log("token ");
       this.angular17token = JSON.parse(token);
+      console.log(this.angular17token.username);
     }
   }
+  
+  
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Online_Ticket_Booking.Middleware;
 using Online_Ticket_Booking.Models.Data;
 using Online_Ticket_Booking.Repositories.Implemantations;
 using Online_Ticket_Booking.Repositories.Implementations;
@@ -8,6 +9,7 @@ using Online_Ticket_Booking.Repositories.Interfaces;
 using Online_Ticket_Booking.Services.Implemantations;
 using Online_Ticket_Booking.Services.Implementations;
 using Online_Ticket_Booking.Services.Interfaces;
+using Stripe;
 using System.Text;
 
 
@@ -52,6 +54,11 @@ builder.Services.AddTransient<ILogRepo, LogRepo>();
 builder.Services.AddTransient<ILogService, LogService>();
 builder.Services.AddTransient<IRegionRepository, RegionRepository>();
 builder.Services.AddTransient<IRegionService, RegionService>();
+
+builder.Services.AddTransient<ILoginRepoWithRefreshToken, LoginRepoWithRefreshToken>();
+builder.Services.AddTransient<ILoginServiceWithRefreshToken, LoginServiceWithRefreshToken>();
+builder.Services.AddTransient<CustomAuth>();
+
 builder.Services.AddTransient<AppDbContext>();
 
 var app = builder.Build();

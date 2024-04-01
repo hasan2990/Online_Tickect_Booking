@@ -10,7 +10,10 @@ export interface Booking {
   isPaid: boolean;
   username?: string;
   email?: string;
-  phone_number?: string; 
+  phone_number?: string;
+  source?: string; 
+  destination?: string;
+  price?: number;
 }
 
 // export interface User {

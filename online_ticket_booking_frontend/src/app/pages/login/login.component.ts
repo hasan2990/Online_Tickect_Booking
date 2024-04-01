@@ -37,8 +37,8 @@ export class LoginComponent {
     this.auth.LoginUser(this.loginObj).subscribe((response: any) => {
       if (response.isSuccess === true) {
         console.log(response);
-        alert(response.statusMessage + "\nToken = " + response.token);
-        this.userobj = response;
+        alert(response.statusMessage + "\nAccess Token = " + response.data.accessToken + "\nRefresh Token = " + response.data.refreshToken);
+        this.userobj = response.data;
         //console.log(this.userobj);
         //localStorage.setItem('angular17token', response.token);
         localStorage.setItem('angular17token', JSON.stringify(this.userobj));

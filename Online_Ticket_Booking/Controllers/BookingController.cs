@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Online_Ticket_Booking.Models;
 using Online_Ticket_Booking.Models.Responses;
 using Online_Ticket_Booking.Services.Interfaces;
@@ -18,6 +19,7 @@ namespace Online_Ticket_Booking.Controllers
             _bookingService = bookingService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetBookings([FromQuery] BookingQueryParameters queryParameters)
         {

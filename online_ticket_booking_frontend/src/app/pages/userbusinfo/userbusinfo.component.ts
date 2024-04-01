@@ -24,7 +24,8 @@ export class UserbusinfoComponent implements OnInit {
     console.log('get token');
     var user = localStorage.getItem('angular17token') ?? '';
     const Vtoken = JSON.parse(user);
-    var token = Vtoken.token;
+    console.log(Vtoken);
+    var token = Vtoken.accessToken;
     console.log(token);
     if (token==null) {
       alert('Login First')
@@ -38,7 +39,7 @@ export class UserbusinfoComponent implements OnInit {
   }
   onSearchOption() {
     console.log(this.source_id);
-    console.log(this.destination_id);
+    console.log(this.destination_id + ' ' + this.flag);
     
     if (this.source_id && this.destination_id && this.flag) {
       this.auth.getBusesById(this.source_id, this.destination_id).subscribe(response => {

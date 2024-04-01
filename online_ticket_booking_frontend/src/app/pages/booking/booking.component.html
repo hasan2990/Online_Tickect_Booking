@@ -30,6 +30,38 @@
         </form>
     </div>
     
+    <div class="bus-layout">
+        <h2>Bus Seat Layout</h2>
+        <div class="seat-map">
+            <div class="row">
+                <div class="seat" id="A1" (click)="Seat('A1')">A1</div>
+                <div class="seat" id="A2" (click)="Seat('A2')">A2</div>
+                <div class="aisle"></div>
+                <div class="seat" id="A3" (click)="Seat('A3')">A3</div>
+                <div class="seat" id="A4" (click)="Seat('A4')">A4</div>
+            </div>
+            <div class="row">
+                <div class="seat" id="B1" (click)="Seat('B1')">B1</div>
+                <div class="seat" id="B2" (click)="Seat('B2')">B2</div>
+                <div class="aisle"></div>
+                <div class="seat" id="B3" (click)="Seat('B3')">B3</div>
+                <div class="seat" id="B4" (click)="Seat('B4')">B4</div>
+            </div>
+            <div class="row">
+                <div class="seat" id="C1" (click)="Seat('C1')">C1</div>
+                <div class="seat"id="C2" (click)="Seat('C2')">C2</div>
+                <div class="aisle"></div>
+                <div class="seat"id="C3" (click)="Seat('C3')">C3</div>
+                <div class="seat"id="C4" (click)="Seat('C4')">C4</div>
+            </div>
+        
+        </div>
+        <!-- <div class="button">
+            <button type="button" class="btn" (click)="onSearchOption()">Search</button>
+        </div> -->
+    </div>
+
+
     <div class="bus-list" *ngIf="bookinginfo.length > 0">
         <h3>Booking:</h3>
         <div class="buses-container">
@@ -47,6 +79,9 @@
                 <p>phone_number: {{ b.phone_number}}</p>
                 <p>isBooked: {{ b.isBooked }}</p>
                 <p>ending_time: {{ b.ending_time }}</p>
+                <p>source: {{ source }}</p>
+                <p>destination: {{ destination }}</p>
+                <p>price: {{ price }}</p>
             </div>
         </div>
     </div>

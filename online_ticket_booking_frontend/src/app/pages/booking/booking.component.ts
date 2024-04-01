@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { Booking } from '../Models/BookingResponse.model';
+import { response } from 'express';
 
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.scss'
 })
-export class BookingComponent implements OnInit {
-
+export class BookingComponent implements OnInit{
   bookinginfo: Booking[]=[];
   bus_id: any;
   seat_no: any;
@@ -18,9 +18,11 @@ export class BookingComponent implements OnInit {
   isPaid: any;
   user_id: any;
   bus_name: any;
-
+  destination: any;
+  source: any;
+  price: any;
   constructor(private http: HttpClient, private router: Router, private auth: AuthService) { 
-    this.isPaid = false;
+    //this.isPaid = false;
   }
 
   ngOnInit(): void {
@@ -55,9 +57,13 @@ export class BookingComponent implements OnInit {
         this.bus_id = VToken.bus_id;
         this.route_id = VToken.route_id;
         this.bus_name = VToken.bus_name;
+        this.source = VToken.source;
+        this.destination = VToken.destination;
+        this.price = VToken.price;
         
+        console.log(VToken.source + ' ' + VToken.destination + ' ' + VToken.price);
+        console.log("retrieveSelectedBusData: "+ this.source + ' ' + this.destination + ' ' + this.price);
         console.log(VToken.bus_id + '  ' + this.bus_name + ' ' + VToken.route_id);
-
       } catch (error) {
         console.error('Error parsing selected bus JSON:', error);
       }
@@ -70,9 +76,10 @@ export class BookingComponent implements OnInit {
     console.log(this.seat_no);
     console.log(this.bus_name);
     this.auth.onBooking(this.bus_id, this.seat_no, this.user_id, this.route_id, this.isPaid)
-      .subscribe(
-        response => {
-          console.log("OnSearchOption " + this.user_id + " " + this.bus_id + " " + this.route_id + " " + this.bus_name);
+    .subscribe(
+      response => {
+        console.log("OnSearchOption " + this.user_id + " " + this.bus_id + " " + this.route_id + " " + this.bus_name);
+        console.log("onSearchOption: "+ this.source + ' ' + this.destination + ' ' + this.price);
   
           if (response.isSuccess) {
             console.log(response);
@@ -98,6 +105,18 @@ export class BookingComponent implements OnInit {
         //   }
         // }
       );
+  } 
+  Seat(st: string) {
+    console.log(st);
+    this.auth.onBookingRequest(this.seat_no, this.isPaid).subscribe(response => {
+        if(response.isSuccess) {
+          console.log(response);
+          alert("onBookingRequest ");
+        }
+        else{
+          console.log("An error occurred onBookingRequest.");
+        }    
+    });
   }
-  
+ 
 }

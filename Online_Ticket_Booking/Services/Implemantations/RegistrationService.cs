@@ -13,22 +13,19 @@ namespace Online_Ticket_Booking.Services.Implementations
         /*With Regex*/
 
         private readonly IRegistrationRepo _iRegistrationRepo;
-        private readonly ILogger<RegistrationService> _logger;
 
 
         public readonly string EmailRegex = @"^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$";
         public readonly string PasswordRegex = @"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,10}$";
         public readonly string MobileRegex = @"^(?:\+?88|01)?(?:\d{11})$";
 
-        public RegistrationService(IRegistrationRepo iRegistrationRepo, ILogger<RegistrationService> logger)
+        public RegistrationService(IRegistrationRepo iRegistrationRepo)
         {
             _iRegistrationRepo = iRegistrationRepo;
-            _logger = logger;
         }
 
         public async Task<ResponseModel> ServiceRegisterUser(User registration)
         {
-            _logger.LogInformation("ServiceRegisterUser Method Calling in Service Layer");
 
             ResponseModel response = new ResponseModel();
 
@@ -52,10 +49,17 @@ namespace Online_Ticket_Booking.Services.Implementations
                 response.statusMessage = "Phone Number Not Current Format Ex: 01521447311";
                 return response;
             }
-
-            response.isSuccess = true;
-            response.statusMessage = await _iRegistrationRepo.RegisterUser(registration);
-
+            var tmp = await _iRegistrationRepo.RegisterUser(registration);
+            if (tmp > 0)
+            {
+                response.isSuccess = true;
+                response.statusMessage = "Registration Complete";
+            }
+            else
+            {
+                response.isSuccess = false;
+                response.statusMessage = "Error";
+            }
             return response;
         }
 
