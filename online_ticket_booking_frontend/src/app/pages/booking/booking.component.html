@@ -68,20 +68,20 @@
             <div *ngFor="let b of bookinginfo" class="bus-item">
 
                 <h4 style="text-align: center;">{{ bus_name }}</h4>
-                <p>booking_id: {{ b.booking_id }}</p>
+                <p><strong>UserName: </strong>{{ b.username}}</p>
+                <p><strong>Phone Number:</strong> {{ b.phone_number }}</p>
+                <p><strong>Source: </strong> {{ source }}</p>
+                <p><strong>Destination: </strong>{{ destination }}</p>
+                <p><strong>Seat no: </strong>{{ b.seat_no }}</p>
+                <p><strong>Price: </strong>{{ price }}</p>
+                <p><strong>isPaid: </strong> {{ b.isPaid }}</p>
+                <!-- <p>booking_id: {{ b.booking_id }}</p>
                 <p>bus_id: {{ b.bus_id }}</p>
-                <p>seat_no: {{ b.seat_no }}</p>
                 <p>user_id: {{ b.user_id }}</p>
                 <p>Route ID: {{ b.route_id }}</p>
-                <p>isPaid: {{ b.isPaid }}</p>
-                <p>userName: {{ b.username}}</p>
                 <p>email: {{ b.email}}</p>
-                <p>phone_number: {{ b.phone_number}}</p>
                 <p>isBooked: {{ b.isBooked }}</p>
-                <p>ending_time: {{ b.ending_time }}</p>
-                <p>source: {{ source }}</p>
-                <p>destination: {{ destination }}</p>
-                <p>price: {{ price }}</p>
+                <p>ending_time: {{ b.ending_time }}</p> -->
             </div>
         </div>
     </div>

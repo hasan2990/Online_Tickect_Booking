@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Online_Ticket_Booking.Services.Interfaces;
 using System;
@@ -15,7 +16,7 @@ namespace Online_Ticket_Booking.Controllers
         {
             _regionService = regionService;
         }
-
+        [Authorize]
         [HttpGet]
         [Route("GetRegionDetails")]
         public async Task<IActionResult> GetAllRegions()

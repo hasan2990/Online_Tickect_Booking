@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Microsoft.Data.SqlClient;
 using Online_Ticket_Booking.Models;
 using Online_Ticket_Booking.Models.Data;
 using Online_Ticket_Booking.Repositories.Interfaces;
@@ -27,6 +26,7 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
                         JOIN Users u ON u.user_id = b.user_id
                         WHERE (b.bus_id = @bus_id AND b.seat_no = @seat_no AND b.isBooked = 1 AND b.user_id = @user_id AND b.route_id = @route_id );
                     ";
+
                     /* string selectQuery = @"
                         SELECT b.booking_id, b.user_id, b.route_id, b.bus_id, b.ending_time, b.seat_no, b.isBooked, u.user_id, u.username, u.email, u.phone_number
                         FROM Bookings b 

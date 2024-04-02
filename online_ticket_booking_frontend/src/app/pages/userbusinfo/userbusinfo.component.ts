@@ -18,7 +18,12 @@ export class UserbusinfoComponent implements OnInit {
   regioninfo: Region[]=[];
 
 
-  constructor(private http: HttpClient, private router: Router, private auth: AuthService) { }
+  constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
+    // this.getBusesById(this.source_id,this.destination_id);
+    // this.auth.$refreshTokenReceived.subscribe((res:any)=>{
+    //   this.getBusesById(this.source_id,this.destination_id);
+    // })
+   }
   
   ngOnInit(): void {
     console.log('get token');

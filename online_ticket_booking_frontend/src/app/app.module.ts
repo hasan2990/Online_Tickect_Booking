@@ -38,7 +38,8 @@ import { BookingComponent } from './pages/booking/booking.component';
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
-    provideRouter(routes),provideHttpClient(withInterceptors([customInterceptor])),
+    provideRouter(routes),
+    provideHttpClient(withInterceptors([customInterceptor])),
   ],
   bootstrap: [AppComponent]
 })

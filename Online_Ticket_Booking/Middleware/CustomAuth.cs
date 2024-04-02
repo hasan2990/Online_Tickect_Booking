@@ -20,14 +20,18 @@ namespace Online_Ticket_Booking.Middleware
         }
         public async Task<RefreshTokenResponse> GenerateToken(string email)
         {
+            var jwtKey = _configuration["Jwt:Key"];
+            if (string.IsNullOrEmpty(jwtKey))
+            {
+                throw new InvalidOperationException("Jwt:Key is not configured.");
+            }
 
-            var security_key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var security_key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
             var credential = new SigningCredentials(security_key, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], null,
                     expires: DateTime.UtcNow.AddMinutes(15),
-                    signingCredentials: credential
+                    signingCredentials: credential);
 
-                );
             var refreshToken = await GenerateRefreshToken(email);
 
             RefreshTokenResponse refreshTokenResponse = new RefreshTokenResponse();
@@ -36,6 +40,7 @@ namespace Online_Ticket_Booking.Middleware
             refreshTokenResponse.refreshToken = refreshToken;
             return refreshTokenResponse;
         }
+
 
         private async Task<string> GenerateRefreshToken(string email)
         {
@@ -76,14 +81,19 @@ namespace Online_Ticket_Booking.Middleware
                 var claimsPrincipal = tokenHandler.ValidateToken(refreshToken, tokenValidationParameters, out _);
 
 
-                var email = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-                return email;
+                var email = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier);
+                if (email != null)
+                {
+                    return email.Value;
+                }
+                else
+                {
+                    throw new Exception("Email claim not found in token.");
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                return null;
+                return "";
             }
         }
 

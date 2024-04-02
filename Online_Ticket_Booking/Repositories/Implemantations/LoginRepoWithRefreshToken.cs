@@ -14,18 +14,14 @@ namespace Online_Ticket_Booking.Repositories.Implemantations
         }
         public async Task<UserLoginModel> GetUserLoginInfo(string email, string password)
         {
-            UserLoginModel response = null;
-
-
-            string query = "SELECT * FROM Users WHERE email = @email AND password = @password";
-
+            string query = "SELECT * FROM Users WHERE email = @Email AND password = @Password";
 
             using (var connection = _appDbContext.Connection())
             {
-                response = await connection.QueryFirstOrDefaultAsync<UserLoginModel>(query, new { email = email, password = password });
+                var response = await connection.QueryFirstOrDefaultAsync<UserLoginModel>(query, new { Email = email, Password = password });
+                return response ?? throw new Exception("User not found."); // Throw exception if response is null
             }
-
-            return response;
         }
+
     }
 }
